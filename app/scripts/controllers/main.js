@@ -9,8 +9,7 @@
  */
 angular.module('shaibaApp')
   .controller('MainCtrl', function ($scope, parse) {
-
-        // Define scope items for sentence
+        // Define scope vars for sentence
         $scope.dish = '';
         $scope.nation = '';
         $scope.adj = '';

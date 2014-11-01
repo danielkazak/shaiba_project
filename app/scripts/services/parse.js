@@ -29,7 +29,6 @@ angular.module('shaibaApp')
           // Execute GET from desired table
           return $http.get('https://api.parse.com/1/classes/' + table);
 
-
       }
     };
   });
