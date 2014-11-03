@@ -14,6 +14,8 @@ angular.module('shaibaApp')
         $scope.dishes = 'dishes';
         $scope.nations = 'nations';
         $scope.adj = 'adj';
+        $scope.status = '';
+        $scope.title = '!עזור לשייבה, תן לו השראה'
 
         // Two way binding for reading input value
         $scope.dishText;
@@ -25,12 +27,16 @@ angular.module('shaibaApp')
             parse.postToparse(parseTable, parseVal)
                 .then(function(response){
                     console.log(response);
+                    $scope.status = response;
+                    $('#alert_placeholder')
+                        .html('<div class="alert alert-success"><a href="" class="close" data-dismiss="alert">&times;</a><strong> '+ parseVal + '</strong> .נוסף בהצלחה</div>')
                     $scope.dishText = '';
                     $scope.nationText = '';
                     $scope.adjText = '';
                 },
                 function(error){
                     console.log("ERROR: " + error);
+                    $scope.status = error;
                 });
         };
 
