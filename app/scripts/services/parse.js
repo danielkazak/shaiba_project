@@ -27,8 +27,7 @@ angular.module('shaibaApp')
 
             //    Initially the data is null
             self.dishes = null;
-            self.nation = null;
-            self.adj = null;
+
 
             //    getData returns a promise which when fulfilled returns the data.
             self.getTable = function(table) {
@@ -57,6 +56,9 @@ angular.module('shaibaApp')
                 //    Now return the promise.
                 return deferred.promise;
             };
+            self.getAllTables = function(){
+
+            }
         }
 
         return new GetParse();

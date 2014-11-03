@@ -9,7 +9,8 @@
  */
 angular.module('shaibaApp')
   .controller('MainCtrl', function ($scope, parse, $q, $timeout) {
-         console.log(parse);
+        console.log(parse);
+
         // $scope objects
         $scope.sentence;
 
