@@ -25,26 +25,28 @@ angular.module('shaibaApp')
             var self = this;
 
             //    Initially the data is null
-            self.data = null;
+            self.dishes = null;
+            self.nation = null;
+            self.adj = null;
 
             //    getData returns a promise which when fulfilled returns the data.
-            self.getData = function() {
+            self.getTable = function(table) {
 
                 //    Create a deferred operation.
                 var deferred = $q.defer();
 
                 //    If we already have the data, we can resolve the promise.
-                if(self.data !== null) {
+                if(self.dishes !== null) {
                     // Resolve cached objects from self.data as promise
-                    deferred.resolve(self.data[Random(self.data.length)].dishName + " (from Cache!)");
+                    deferred.resolve(self.dishes[Random(self.dishes.length)].name + " (from Cache!)");
                 } else {
                     //    Get the data from the server.
-                    $http.get('https://api.parse.com/1/classes/dishes')
+                    $http.get('https://api.parse.com/1/classes/' + table)
                         .success(function(response) {
                             console.log(response.results); // Log the received objects to console
-                            self.data = response.results; // Populate the self.data array with received objects
+                            self.dishes = response.results; // Populate the self.data array with received objects
                             // Resolve received objects as promise
-                            deferred.resolve(response.results[Random(response.results.length)].dishName + " (from Server!)");
+                            deferred.resolve(response.results[Random(response.results.length)].name + " (from Server!)");
                         })
                         .error(function(response) {
                             deferred.reject(response);

@@ -11,15 +11,15 @@ angular.module('shaibaApp')
   .controller('MainCtrl', function ($scope, parse, $q, $timeout) {
 
         // $scope objects
-        $scope.dishes;
+        $scope.sentence;
 
         //    We have a function on the scope that can update the name.
         $scope.getData = function() {
-            parse.getData()
+            parse.getTable('nations')
                 .then(
                 /* success function */
                 function(data) {
-                    $scope.dishes = data;
+                    $scope.sentence = data;
                 },
                 /* error function */
                 function(result) {
