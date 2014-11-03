@@ -14,7 +14,8 @@ angular.module('shaibaApp')
         $scope.dishes = 'dishes';
         $scope.nations = 'nations';
         $scope.adj = 'adj';
-        $scope.status = '';
+
+        // Page title
         $scope.title = '!עזור לשייבה, תן לו השראה'
 
         // Two way binding for reading input value
@@ -29,13 +30,17 @@ angular.module('shaibaApp')
                     console.log(response);
                     $scope.status = response;
                     $('#alert_placeholder')
-                        .html('<div class="alert alert-success"><a href="" class="close" data-dismiss="alert">&times;</a><strong> '+ parseVal + '</strong> .נוסף בהצלחה</div>')
+                        .html('<div class="alert alert-success"><a href="" class="close" data-dismiss="alert">&times;</a><strong>'
+                            + parseVal + '</strong> .נוסף בהצלחה</div>');
                     $scope.dishText = '';
                     $scope.nationText = '';
                     $scope.adjText = '';
                 },
                 function(error){
                     console.log("ERROR: " + error);
+                    $('#alert_placeholder')
+                        .html('<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a><strong> ' +
+                            ''+ parseVal + '</strong> .לא התווסף, שגיאה: <strong>'+ error + '</strong></div>');
                     $scope.status = error;
                 });
         };

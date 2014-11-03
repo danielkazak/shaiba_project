@@ -24,11 +24,11 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#"><img style="width: 20px; height: 20px;" src="images/home.png"/></a></li>
-          <li><a ng-href="#/about"><img style="width: 20px; height: 20px;" src="images/settings.png"/></a></li>
-          <!--<li><a ng-href="#">Contact</a></li>-->
+          <li><a ng-href="#"><span class="glyphicon glyphicon-home"/></a></li>
+          <li><a ng-href="#/about"><span class="glyphicon glyphicon-cog"/></a></li>
+          <li><a ng-href="#/halloffame"><span class="glyphicon glyphicon-star"/></a></li>
         </ul>
-        <h3 class="text-muted">Shaiba generator!</h3>
+        <h3 class="text-muted"></h3>
       </div>
 
       <div ng-view=""></div>
@@ -80,6 +80,7 @@
         <script src="scripts/services/parse.js"></script>
         <script src="scripts/services/datamanager.js"></script>
         <script src="scripts/directives/onkeyup.js"></script>
+        <script src="scripts/controllers/hall.js"></script>
         <!-- endbuild -->
 </body>
 </html>
