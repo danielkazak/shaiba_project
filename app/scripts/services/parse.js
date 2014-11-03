@@ -20,6 +20,7 @@ angular.module('shaibaApp')
             return Math.floor(Math.random() * num);
         }
 
+        //  Create a class that represents our parse service.
         function GetParse() {
 
             var self = this;

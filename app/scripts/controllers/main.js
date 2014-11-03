@@ -9,12 +9,12 @@
  */
 angular.module('shaibaApp')
   .controller('MainCtrl', function ($scope, parse, $q, $timeout) {
-
+         console.log(parse);
         // $scope objects
         $scope.sentence;
 
         //    We have a function on the scope that can update the name.
-        $scope.getData = function() {
+        $scope.getTables = function() {
             parse.getTable('nations')
                 .then(
                 /* success function */
