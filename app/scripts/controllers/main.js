@@ -8,26 +8,43 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('MainCtrl', function ($scope, parse, $q, $timeout) {
-        console.log(parse);
+  .controller('MainCtrl', function ($scope, parse, $q, $timeout, DataManager) {
+
 
         // $scope objects
-        $scope.sentence;
+        $scope.nation = ' ';
+        $scope.dish = "";
+        $scope.adj = ' ';
 
-        //    We have a function on the scope that can update the name.
-        $scope.getTables = function() {
-            parse.getTable('nations')
+
+        $scope.getSentence = function(){
+            parse.getDish()
                 .then(
-                /* success function */
-                function(data) {
-                    $scope.sentence = data;
+                function(dish) {
+                    $scope.dish = dish;
                 },
-                /* error function */
-                function(result) {
-                    console.log("Failed to get the name, result is " + result);
+                function(results){
+                    console.log("Failed to get dish: " + result);
                 });
-        };
 
+            parse.getNation()
+                .then(
+                function(nation){
+                    $scope.nation = nation;
+                },
+                function(result){
+                    console.log("Failed to get nation: " + result);
+                });
+
+            parse.getAdj()
+                .then(
+                function(adj){
+                    $scope.adj = adj;
+                },
+                function(result){
+                    console.log("Failed to get nation: " + result);
+                });
+        }
 
 
     });

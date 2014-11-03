@@ -12,6 +12,9 @@ angular.module('shaibaApp')
     // Service logic
     // ...
     var self = this;
+    self.dishes;
+    self.nations;
+    self.adj;
 
 
 
@@ -19,40 +22,6 @@ angular.module('shaibaApp')
     return {
       generateSentence: function() {
 
-          parse.getTable('nations')
-              .then(
-              /* success function */
-              function(data) {
-                  self.dishes = data;
-              },
-              /* error function */
-              function(result) {
-                  console.log("Failed to get the data, result is " + result);
-              });
-
-          parse.getTable('dishes')
-              .then(
-              /* success function */
-              function(data) {
-                  self.dishes = data;
-              },
-              /* error function */
-              function(result) {
-                  console.log("Failed to get the data, result is " + result);
-              });
-
-          parse.getTable('adj')
-              .then(
-              /* success function */
-              function(data) {
-                  self.adj = data;
-              },
-              /* error function */
-              function(result) {
-                  console.log("Failed to get the data, result is " + result);
-              });
-
-          return ;
       }
     };
   });

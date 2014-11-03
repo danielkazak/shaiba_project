@@ -1,8 +1,22 @@
 <div class="jumbotron">
-   <p><input placeholder="מנה" type="text"/></p>
-   <p><input placeholder="לאום" type="text"></p>
-   <p><input placeholder="תוספת" type="text"></p>
+    <div class="focusguard" id="focusguard-1" tabindex="0"></div>
+    <p><input id="firstInput" placeholder="מנה" type="text" tabindex="1"/></p>
+    <p><input placeholder="לאום" type="text" tabindex="2"></p>
+    <p><input id="lastInput" placeholder="תוספת" type="text" tabindex="3"></p>
+    <div class="focusguard" id="focusguard-2" tabindex="4"></div>
+
 <p class="lead">
 
 </p>
 </div>
+
+<script type="text/javascript">
+    $('#firstInput').focus();
+    $('#focusguard-2').on('focus', function() {
+        $('#firstInput').focus();
+    });
+
+    $('#focusguard-1').on('focus', function() {
+        $('#lastInput').focus();
+    });
+</script>

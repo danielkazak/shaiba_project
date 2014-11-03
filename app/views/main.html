@@ -2,10 +2,8 @@
   <!--<h1>'Allo, 'Allo!</h1>-->
   <p class="lead">
     <img src="images/shaiba.png" alt="I'm Shaiba"><br>
-      <a href ng-click="getTables()">Update Data</a>
-    <p><strong>Dish:</strong> {{sentence}}</p>
+    <p><strong>{{dish + " " + nation + " " + adj }}</strong></p>
   </p>
-    <button ng-controller="MainCtrl" ng-click="generateSentence()"></button>
 
-  <p><a class="btn btn-lg btn-success" ng-href="#" ng-click="generateSentence()">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+  <p><a class="btn btn-lg btn-success" ng-click="getSentence()">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
