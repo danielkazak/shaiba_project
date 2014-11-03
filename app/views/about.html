@@ -1,8 +1,9 @@
 <div class="jumbotron">
     <div class="focusguard" id="focusguard-1" tabindex="0"></div>
-    <p><input id="firstInput" placeholder="מנה" type="text" tabindex="1"/></p>
-    <p><input placeholder="לאום" type="text" tabindex="2"></p>
-    <p><input id="lastInput" placeholder="תוספת" type="text" tabindex="3"></p>
+    <br />Key Log: {{keylog}}
+    <p><input id="firstInput" placeholder="מנה" type="text" tabindex="1" on-keyup-fn="postData" keys="[13]" ng-model="dishText" parse-class="dishes"/></p>
+    <p><input placeholder="לאום" type="text" tabindex="2" on-keyup-fn="postData" keys="[13]" ng-model="nationText" parse-class="nations"></p>
+    <p><input id="lastInput" placeholder="תוספת" type="text" tabindex="3" on-keyup-fn="postData" keys="[13]" ng-model="adjText" parse-class="adj"></p>
     <div class="focusguard" id="focusguard-2" tabindex="4"></div>
 
 <p class="lead">
