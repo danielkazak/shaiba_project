@@ -8,20 +8,25 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('MainCtrl', function ($scope, parse) {
-        // Define scope vars for sentence
-        $scope.dish = '';
-        $scope.nation = '';
-        $scope.adj = '';
+  .controller('MainCtrl', function ($scope, parse, $q, $timeout) {
 
-        // Random function
-        function Random(num){
-            return Math.floor(Math.random() * num);
-        }
+        // $scope objects
+        $scope.dishes;
 
-        // Initialize $scope vars for DOM (check the main.HTML page)
-        parse.getParse('dishes').success(function(data){$scope.dish = data.results[Random(data.results.length)].dishName; });
-        parse.getParse('nations').success(function(data){$scope.nation = data.results[Random(data.results.length)].natName; });
-        parse.getParse('adj').success(function(data){$scope.adj = data.results[Random(data.results.length)].adjName; });
+        //    We have a function on the scope that can update the name.
+        $scope.getData = function() {
+            parse.getData()
+                .then(
+                /* success function */
+                function(data) {
+                    $scope.dishes = data;
+                },
+                /* error function */
+                function(result) {
+                    console.log("Failed to get the name, result is " + result);
+                });
+        };
+
+
 
     });
