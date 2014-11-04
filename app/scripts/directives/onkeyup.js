@@ -12,16 +12,16 @@ angular.module('shaibaApp')
             //Evaluate the variable that was passed
             //In this case we're just passing a variable that points
             //to a function we'll call each keyup
-            var keyupFn = scope.$eval(attrs.onKeyupFn);
-            var allowedKeys = scope.$eval(attrs.keys);
-            var inputElement = scope.$eval(attrs.parseClass);
+            var params = scope.$eval(attrs.parameters);
+
             elm.bind('keyup', function(evt) {
                 //$apply makes sure that angular knows
                 //we're changing something
-                angular.forEach(allowedKeys, function(key) {
+                angular.forEach(params[1], function(key) {
                     if (key == evt.which){
                         scope.$apply(function() {
-                            keyupFn.call(scope, inputElement, elm.val());
+                            params[0].call(scope, params[2], elm.val());
+                            elm.val('');
                         });
                     }
                 });

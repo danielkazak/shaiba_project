@@ -16,13 +16,7 @@ angular.module('shaibaApp')
         $scope.adj = 'adj';
 
         // Page title
-        $scope.title = '!עזור לשייבה, תן לו השראה'
-
-        // Two way binding for reading input value
-        $scope.dishText;
-        $scope.nationText;
-        $scope.adjText;
-
+        $scope.title = '!עזור לשייבה, תן לו השראה';
 
         $scope.postData = function(parseTable, parseVal) {
             parse.postToparse(parseTable, parseVal)
@@ -32,9 +26,6 @@ angular.module('shaibaApp')
                     $('#alert_placeholder')
                         .html('<div class="alert alert-success"><a href="#/about" class="close"  data-dismiss="alert">&times;</a><strong>'
                             + parseVal + '</strong> .נוסף בהצלחה</div>');
-                    $scope.dishText = '';
-                    $scope.nationText = '';
-                    $scope.adjText = '';
                 },
                 function(error){
                     console.log("ERROR: " + error);
@@ -44,8 +35,4 @@ angular.module('shaibaApp')
                     $scope.status = error;
                 });
         };
-
-
-
-
   });
