@@ -30,7 +30,7 @@ angular.module('shaibaApp')
                     console.log(response);
                     $scope.status = response;
                     $('#alert_placeholder')
-                        .html('<div class="alert alert-success"><a href="" class="close" data-dismiss="alert">&times;</a><strong>'
+                        .html('<div class="alert alert-success"><a href="#/about" class="close"  data-dismiss="alert">&times;</a><strong>'
                             + parseVal + '</strong> .נוסף בהצלחה</div>');
                     $scope.dishText = '';
                     $scope.nationText = '';
