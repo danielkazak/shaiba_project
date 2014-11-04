@@ -8,7 +8,7 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('AboutCtrl', function ($scope, parse) {
+  .controller('AboutCtrl', function ($scope, parse, AppAlert) {
 
         // Send attributes to class attribute for directive (so onkeyup can send attribute directly)
         $scope.dishes = 'dishes';
@@ -23,9 +23,7 @@ angular.module('shaibaApp')
                 .then(function(response){
                     console.log(response);
                     $scope.status = response;
-                    $('#alert_placeholder')
-                        .html('<div class="alert alert-success"><a href="#/about" class="close"  data-dismiss="alert">&times;</a><strong>'
-                            + parseVal + '</strong> .נוסף בהצלחה</div>');
+                    AppAlert.add('success', parseVal + ' נוסף בהצלחה.', 2000);
                 },
                 function(error){
                     console.log("ERROR: " + error);

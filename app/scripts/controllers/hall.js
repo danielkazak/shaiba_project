@@ -8,10 +8,7 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('HallctrlCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('HallCtrl', function ($scope, AppAlert) {
+        var a = {};
+        a.push()
   });
