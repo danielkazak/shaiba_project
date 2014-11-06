@@ -8,7 +8,7 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('HallCtrl', function ($scope, parse) {
+  .controller('HallCtrl', function ($scope, parse, Facebook) {
 
         $scope.bestSentences = null;
 
@@ -53,4 +53,6 @@ angular.module('shaibaApp')
 
             console.log(ratingBar.grade + " and " + ratingBar.prevGrade);
         }
+
+        $scope.fbUser = Facebook.getUserName();
   });
