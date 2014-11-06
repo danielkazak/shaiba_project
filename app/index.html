@@ -28,7 +28,9 @@
           <li><a ng-href="#/about"><span class="glyphicon glyphicon-cog"/></a></li>
           <li><a ng-href="#/halloffame"><span class="glyphicon glyphicon-star"/></a></li>
         </ul>
-        <h3 class="text-muted">{{ welcomeMsg }}</h3><button ng-controller="MainCtrl" ng-click="loginFacebook()">login</button>
+        <h3 class="text-muted">{{ welcomeMsg }}</h3>
+        <button ng-controller="MainCtrl" ng-click="loginFacebook()">login</button>
+          <button ng-controller="MainCtrl" ng-click="logoutFacebook()">logout</button>
       </div>
 
       <div ng-view=""></div>

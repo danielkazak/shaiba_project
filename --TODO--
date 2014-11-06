@@ -1,0 +1,57 @@
+Hall of fame
+------------
+
+- User experience flow
+    1. User picks rating
+    2. Rating changes accordingly
+    3. Sentence is being sorted according to new rating
+    4. The sentence is being followed (focused upon)
+    5. The sentence row color is being changed to "Attempting status" (yellow - css, fading blinking work)
+    6.
+        6.1 Once the prior step (5) is done, means the change was posted to parse, then change row's color to "Success status" (green)
+            6.1.1 Return row to normal state.
+        6.2  If the prior step (5) returned error, change row's color to "Error status" (red)
+            6.2.1 Return sentence to prior rank
+            6.2.2 Return sentence's row to prior position
+            6.2.3 Return to normal state
+    7. Alert the user accordingly
+
+
+- Users' Restrictions
+    1. Disable rating if no user connected
+    2. If a user connects, disable the rating for the rows that already had been rated by the user
+    3. When a user rate a sentence, add this information to parse
+        3.1 We should decide whether we should manage a table that holds all the user-sentence combinations
+            or add an array of users to the best's table.
+
+
+
+Facebook Service
+----------------
+
+1. Sort out the logout issue (How to log out the user from the site but not from facebook?)
+2. Review the current design of the Facebook Service (whether to work with $rootScope needed or not?)
+
+Educate: Review ngFacebook's code, focus on $q.defer() and FB sessions & tokens.
+
+
+Main.js/html
+-------
+
+1. Allow adding a sentence (only if there's an active user) to the hall of fame.
+2. Consider restrictions for the above (e.g.: How many additions per day?)
+3. Add [ENTER] key listener to generate sentence.
+
+Settings.js
+-----------
+
+1. Valid word validation
+2. Word recognition (e.g.: Male/Female relation)
+
+
+Future
+-------
+1. Choose category: Food / Technology / Science
+2. Share + like on facebook
+3. Shaiba face animation upon generate
+4. Secure data (ask Dotan)

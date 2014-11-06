@@ -21,6 +21,9 @@ angular.module('shaibaApp')
         $scope.loginFacebook = function(){
             Facebook.login();
         }
+        $scope.logoutFacebook = function(){
+            Facebook.logout();
+        }
 
 
         $scope.getSentence = function(){

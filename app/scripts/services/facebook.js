@@ -12,6 +12,7 @@ angular.module('shaibaApp')
     // Service logic
     // ...
         $rootScope.isLoggedIn = false;
+        $rootScope.fbUserName = null;
 
 
     var facebookService = {
@@ -36,7 +37,7 @@ angular.module('shaibaApp')
             $facebook.api("/me").then(
                 function(response) {
                     $rootScope.welcomeMsg = "Welcome " + response.name;
-                    facebookService.userDetails.userName = response.name;
+                    $rootScope.fbUserName = response.name;
                     facebookService.userDetails.userEmail = response.email;
                     $rootScope.isLoggedIn = true;
                 },
@@ -53,6 +54,7 @@ angular.module('shaibaApp')
             if ($rootScope.isLoggedIn === true){
                 return facebookService.userDetails.userName;
             } else {
+                console.log($rootScope.isLoggedIn);
                 return "No active user found.";
             }
         },
@@ -64,6 +66,7 @@ angular.module('shaibaApp')
         },
         logout: function() {
             $facebook.logout().then(function(){
+                $rootScope.fbUserName = null;
                 facebookService.refresh();
             });
         }

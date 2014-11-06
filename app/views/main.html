@@ -1,9 +1,9 @@
 <div class="jumbotron">
   <!--<h1>'Allo, 'Allo!</h1>-->
   <p class="lead">
-    <img src="images/shaiba.png" alt="I'm Shaiba"><br>
+    <img src="images/shaiba.png" id="shaibapic" alt="I'm Shaiba"
+         ng-click="getSentence()" style="cursor: pointer;">
     <p><strong>{{dish + " " + nation + " " + adj }}</strong></p>
   </p>
-
-  <p><a class="btn btn-lg btn-success" ng-click="getSentence()">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
+
