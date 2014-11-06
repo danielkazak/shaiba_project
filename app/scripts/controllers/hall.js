@@ -55,4 +55,5 @@ angular.module('shaibaApp')
         }
 
         $scope.fbUser = Facebook.getUserName();
+        $scope.fbEmail = Facebook.getUserEmail();
   });
