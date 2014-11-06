@@ -27,10 +27,8 @@ angular.module('shaibaApp')
                 },
                 function(error){
                     console.log("ERROR: " + error);
-                    $('#alert_placeholder')
-                        .html('<div class="alert alert-danger"><a href="" class="close" data-dismiss="alert">&times;</a><strong> ' +
-                            ''+ parseVal + '</strong> .לא התווסף, שגיאה: <strong>'+ error + '</strong></div>');
                     $scope.status = error;
+                    AppAlert.add('danger', parseVal + 'לא התווסף, שגיאה:' + error, 2000);
                 });
         };
   });

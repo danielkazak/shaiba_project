@@ -29,6 +29,7 @@ angular.module('shaibaApp')
                 $scope.bestSentences.sort(compare);
                 for(var i = 0; i < $scope.bestSentences.length; i++) {
                     $scope.bestSentences[i].prevGrade = $scope.bestSentences[i].grade;
+                    $scope.bestSentences[i].alreadyChanged = false;
                 }
             },
             function(result){
@@ -46,12 +47,16 @@ angular.module('shaibaApp')
 
         $scope.changeRating = function(index) {
             var ratingBar = $scope.bestSentences[index];
-            console.log(ratingBar.grade + " and " + ratingBar.prevGrade);
+            console.log(ratingBar);
 
             var newGrade = (ratingBar.usersNumber * ratingBar.prevGrade + ratingBar.grade) / (ratingBar.usersNumber + 1);
             ratingBar.prevGrade = ratingBar.grade = newGrade;
-
-            console.log(ratingBar.grade + " and " + ratingBar.prevGrade);
+            ratingBar.usersNumber++;
+            ratingBar.alreadyChanged = true;
+            $scope.bestSentences.sort(compare);
+            var data = {grade: ratingBar.grade, usersNumber: ratingBar.usersNumber};
+            parse.putToParse('best', ratingBar.objectId, data);
+            console.log(ratingBar);
         }
 
         $scope.fbUser = Facebook.getUserName();

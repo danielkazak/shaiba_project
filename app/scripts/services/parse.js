@@ -67,7 +67,7 @@ angular.module('shaibaApp')
                 return deferred.promise;
             }
 
-            self.postToparse = function(table, val){
+            self.postToparse = function(table, val) {
                 var deferred = $q.defer();
                 $http.post('https://api.parse.com/1/classes/' + table, {name: val}).
                     success(function(data, status, headers, config) {
@@ -76,10 +76,24 @@ angular.module('shaibaApp')
                     }).
                     error(function(data, status, headers, config) {
                         // called asynchronously if an error occurs
-                        deferred.reject(val + " wasnt posted. Reason: " + status)
+                        deferred.reject(val + " wasnt posted. Reason: " + status);
                     });
                 return deferred.promise;
             };
+
+            self.putToParse = function(table, column, data) {
+                var deferred = $q.defer();
+                $http.put('https://api.parse.com/1/classes/' + table + '/' + column, data).
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        deferred.resolve(column + " posted to " + table);
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        deferred.reject(column + " wasnt posted. Reason: " + status);
+                    });
+                return deferred.promise;
+            }
 
         }
         return new Parse();

@@ -12,9 +12,9 @@ angular.module('shaibaApp')
 
 
         // $scope objects
-        $scope.nation = ' ';
-        $scope.dish = ' ';
-        $scope.adj = ' ';
+        $scope.nation = '';
+        $scope.dish = '';
+        $scope.adj = '';
 
 
         Facebook.refresh();
