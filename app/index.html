@@ -16,6 +16,8 @@
     <!-- endbuild -->
   </head>
   <body ng-app="shaibaApp">
+    <!-- Include FaceBook -->
+
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -28,7 +30,7 @@
           <li><a ng-href="#/about"><span class="glyphicon glyphicon-cog"/></a></li>
           <li><a ng-href="#/halloffame"><span class="glyphicon glyphicon-star"/></a></li>
         </ul>
-        <h3 class="text-muted"></h3>
+        <h3 class="text-muted">{{ welcomeMsg }}</h3><button ng-controller="MainCtrl" ng-click="loginFacebook()">login</button>
       </div>
 
       <div ng-view=""></div>
@@ -75,6 +77,7 @@
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ng-facebook/ngFacebook.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -88,6 +91,7 @@
         <script src="scripts/directives/onkeyup.js"></script>
         <script src="scripts/controllers/hall.js"></script>
         <script src="scripts/services/appalert.js"></script>
+        <script src="scripts/services/facebook.js"></script>
         <!-- endbuild -->
 </body>
 </html>

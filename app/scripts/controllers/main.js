@@ -8,13 +8,19 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('MainCtrl', function ($scope, parse, $q, $timeout, DataManager) {
+  .controller('MainCtrl', function ($scope, parse, $q, $timeout, DataManager, Facebook) {
 
 
         // $scope objects
         $scope.nation = ' ';
         $scope.dish = "";
         $scope.adj = ' ';
+
+
+        Facebook.refresh();
+        $scope.loginFacebook = function(){
+            Facebook.login();
+        }
 
 
         $scope.getSentence = function(){
