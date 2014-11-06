@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: HallctrlCtrl', function () {
+describe('Controller: HallCtrl', function () {
 
   // load the controller's module
   beforeEach(module('shaibaApp'));
 
-  var HallctrlCtrl,
+  var HallCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    HallctrlCtrl = $controller('HallctrlCtrl', {
+    HallCtrl = $controller('HallCtrl', {
       $scope: scope
     });
   }));
