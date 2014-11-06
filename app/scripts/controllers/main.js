@@ -13,7 +13,7 @@ angular.module('shaibaApp')
 
         // $scope objects
         $scope.nation = ' ';
-        $scope.dish = "";
+        $scope.dish = ' ';
         $scope.adj = ' ';
 
 
@@ -24,16 +24,16 @@ angular.module('shaibaApp')
 
 
         $scope.getSentence = function(){
-            parse.getDish()
+            parse.getRandom('dishes')
                 .then(
                 function(dish) {
                     $scope.dish = dish;
                 },
-                function(results){
+                function(result){
                     console.log("Failed to get dish: " + result);
                 });
 
-            parse.getNation()
+            parse.getRandom('nations')
                 .then(
                 function(nation){
                     $scope.nation = nation;
@@ -42,7 +42,7 @@ angular.module('shaibaApp')
                     console.log("Failed to get nation: " + result);
                 });
 
-            parse.getAdj()
+            parse.getRandom('adj')
                 .then(
                 function(adj){
                     $scope.adj = adj;

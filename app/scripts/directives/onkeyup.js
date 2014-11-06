@@ -12,7 +12,7 @@ angular.module('shaibaApp')
             //Evaluate the variable that was passed
             //In this case we're just passing a variable that points
             //to a function we'll call each keyup
-            var params = scope.$eval(attrs.parameters);
+            var params = scope.$eval(attrs.keyupParameters);
 
             elm.bind('keyup', function(evt) {
                 //$apply makes sure that angular knows
