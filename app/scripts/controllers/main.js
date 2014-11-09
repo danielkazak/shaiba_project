@@ -25,7 +25,6 @@ angular.module('shaibaApp')
             Facebook.logout();
         }
 
-
         $scope.getSentence = function(){
             parse.getRandom('dishes')
                 .then(

@@ -122,3 +122,7 @@ input:focus {
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none !important;
 }
+
+.white-color{
+    background-color: white;
+}

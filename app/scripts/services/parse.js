@@ -67,16 +67,16 @@ angular.module('shaibaApp')
                 return deferred.promise;
             }
 
-            self.postToparse = function(table, val) {
+            self.postToparse = function(table, rowData) {
                 var deferred = $q.defer();
-                $http.post('https://api.parse.com/1/classes/' + table, {name: val}).
+                $http.post('https://api.parse.com/1/classes/' + table, rowData).
                     success(function(data, status, headers, config) {
                         // this callback will be called asynchronously
-                        deferred.resolve(val + " posted to " + table);
+                        deferred.resolve("1. " + JSON.stringify(rowData) + " posted to " + table);
                     }).
                     error(function(data, status, headers, config) {
                         // called asynchronously if an error occurs
-                        deferred.reject(val + " wasnt posted. Reason: " + status);
+                        deferred.reject(data.name + " wasnt posted. Reason: " + status);
                     });
                 return deferred.promise;
             };

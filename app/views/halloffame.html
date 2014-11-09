@@ -1,22 +1,22 @@
-<div class="jumbotron">
-<div class="well">
-    <table class="table" dir="RTL" cellpadding="6" cellspacing="0" style="margin:1em auto;">
-        <thead>
-            <tr>
-                <td>#</td>
-                <td>משפט</td>
-                <td>ציון</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="sentence in bestSentences">
-                <td>{{$index+1}}</td>
-                <td>{{sentence.name}}</td>
-                <td><rating ng-model="sentence.grade" max="max" readonly="sentence.alreadyChanged" ng-click="changeRating($index)"></rating></td>
-            </tr>
-        </tbody>
-    </table>
+<div class="jumbotron white-color">
+    <div class="well">
+        <table class="table" dir="RTL" cellpadding="6" cellspacing="0" style="margin:1em auto;">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>משפט</td>
+                    <td>ציון</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="sentence in bestSentences">
+                    <td>{{$index+1}}</td>
+                    <td>{{sentence.name}}</td>
+                    <td><rating ng-model="sentence.grade" max="max" readonly="sentence.alreadyChanged" ng-click="changeRating($index)"></rating></td>
+                </tr>
+            </tbody>
+        </table>
 
-    <p style="text-align:center"><button ng-click="showGrades()">תראה מה יש פה יא פלופ</button></p>
-</div>
+        <p style="text-align:center"><button ng-click="showGrades()">תראה מה יש פה יא פלופ</button></p>
+    </div>
 </div>
