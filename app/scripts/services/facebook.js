@@ -14,13 +14,13 @@ angular.module('shaibaApp')
         $rootScope.isLoggedIn = false;
         $rootScope.fbUserName = null;
 
-
     var facebookService = {
 
         // Vars to return
         userDetails: {
             userName: '',
-            userEmail: ''
+            userEmail: '',
+            userId: ''
         },
 
         // Test facebook connection
@@ -39,23 +39,19 @@ angular.module('shaibaApp')
                     $rootScope.welcomeMsg = "Welcome " + response.name;
                     $rootScope.fbUserName = response.name;
                     facebookService.userDetails.userEmail = response.email;
+                    facebookService.userDetails.userId = response.id;
                     $rootScope.isLoggedIn = true;
                 },
                 function(err) {
                     $rootScope.welcomeMsg = "Please log in";
                 });
         },
-        getUserEmail: function() {
-            if($rootScope.isLoggedIn === true){
-
-            }
-        },
-        getUserName: function(){
+        getUserId: function(){
             if ($rootScope.isLoggedIn === true){
-                return facebookService.userDetails.userName;
+                return facebookService.userDetails.userId;
             } else {
                 console.log($rootScope.isLoggedIn);
-                return "No active user found.";
+                return '';
             }
         },
         login:  function() {
@@ -63,13 +59,13 @@ angular.module('shaibaApp')
                 console.log(facebookService);
                 facebookService.refresh();
             });
-        },
-        logout: function() {
+        }
+        /*logout: function() {
             $facebook.logout().then(function(){
                 $rootScope.fbUserName = null;
                 facebookService.refresh();
             });
-        }
+        }*/
 
 
 

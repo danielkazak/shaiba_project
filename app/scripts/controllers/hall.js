@@ -59,6 +59,4 @@ angular.module('shaibaApp')
             console.log(ratingBar);
         }
 
-
-        $scope.fbEmail = Facebook.getUserEmail();
   });

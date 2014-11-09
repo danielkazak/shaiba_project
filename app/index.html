@@ -24,14 +24,15 @@
     <!-- Add your site or application content here -->
     <div class="container">
       <div class="header">
+          <div>
+          <h5 ng-show="isLoggedIn" class="text-muted">{{ welcomeMsg }}</h5>
+          <img ng-hide="isLoggedIn" src="images/fblogin.png" ng-controller="MainCtrl" ng-click="loginFacebook()" class="fbbutton"/>
+          </div>
         <ul class="nav nav-pills pull-right">
           <li><a ng-href="#"><span class="glyphicon glyphicon-home"/></a></li>
           <li><a ng-href="#/about"><span class="glyphicon glyphicon-cog"/></a></li>
           <li><a ng-href="#/halloffame"><span class="glyphicon glyphicon-star"/></a></li>
         </ul>
-        <h3 class="text-muted">{{ welcomeMsg }}</h3>
-        <button ng-controller="MainCtrl" ng-click="loginFacebook()">login</button>
-          <button ng-controller="MainCtrl" ng-click="logoutFacebook()">logout</button>
       </div>
 
       <div ng-view="" class="slide"></div>

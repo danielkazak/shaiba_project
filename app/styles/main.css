@@ -77,6 +77,13 @@ body {
     border-bottom: 0;
   }
 }
+
+.fbbutton {
+    cursor: pointer;
+    height: 19%;
+    width: 19%;
+}
+
 input{
     text-align: right;
     direction: RTL;

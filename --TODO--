@@ -29,8 +29,8 @@ Hall of fame
 Facebook Service
 ----------------
 
-1. Sort out the logout issue (How to log out the user from the site but not from facebook?)
-2. Review the current design of the Facebook Service (whether to work with $rootScope needed or not?)
+1. DONE: Sort out the logout issue (How to log out the user from the site but not from facebook?)
+2. DONE: Review the current design of the Facebook Service (whether to work with $rootScope needed or not?)
 
 Educate: Review ngFacebook's code, focus on $q.defer() and FB sessions & tokens.
 

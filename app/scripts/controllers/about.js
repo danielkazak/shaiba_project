@@ -8,7 +8,7 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('AboutCtrl', function ($scope, parse, AppAlert) {
+  .controller('AboutCtrl', function ($scope, parse, AppAlert, $rootScope) {
 
         // Send attributes to class attribute for directive (so onkeyup can send attribute directly)
         $scope.dishes = 'dishes';
@@ -16,9 +16,9 @@ angular.module('shaibaApp')
         $scope.adj = 'adj';
 
         // Page title
-        $scope.title = '!עזור לשייבה, תן לו השראה';
 
         $scope.postData = function(parseTable, parseVal) {
+            console.log("User " + $rootScope.fbUserName + " initiated action."); // DEBUG
             parse.postToparse(parseTable, parseVal)
                 .then(function(response){
                     console.log(response);
