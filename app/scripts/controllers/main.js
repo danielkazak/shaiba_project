@@ -8,14 +8,13 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('MainCtrl', function ($scope, parse, $q, $timeout, DataManager, Facebook, AppAlert, Title) {
+  .controller('MainCtrl', function ($scope, parse, $q, $timeout, DataManager, Facebook, AppAlert, Title, $rootScope) {
         Title.setTitle('מחולל שייבה');
 
         // $scope objects
         $scope.nation = '';
         $scope.dish = '';
         $scope.adj = '';
-
 
         $scope.getSentence = function(){
             parse.getRandom('dishes')
@@ -44,5 +43,27 @@ angular.module('shaibaApp')
                 function(result){
                     console.log("Failed to get nation: " + result);
                 });
+        }
+
+        $scope.addToHall = function(){
+            if($rootScope.isLoggedIn && $scope.nation !== '' && $scope.dish !== '' && $scope.adj !== ''){
+                parse.postToparse('best', {
+                    name: $scope.dish
+                        + ' ' + $scope.nation
+                        + ' ' + $scope.adj,
+                    grade: 4,
+                    usersNumber: 1,
+                    user: Facebook.userDetails.userId
+                }).then(function(success){
+                    AppAlert.add('success', 'המשפט התווסף להיכל התהילה', 4000);
+                },
+                    function(error){
+                        AppAlert.add('danger', 'התרחשה בעיה בשרת')
+                    }
+                );
+
+            } else {
+                AppAlert.add('warning', '!שייבה לא אמר כלום יא פלופ', 4000);
+            }
         }
     });

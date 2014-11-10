@@ -30,6 +30,7 @@ angular.module('shaibaApp')
             self.nations = null;
             self.adj = null;
             self.best = null;
+            self.users = null;
 
             self.getTable = function(tableName, update) {
                 var deferred = $q.defer();
@@ -75,7 +76,7 @@ angular.module('shaibaApp')
                 $http.post('https://api.parse.com/1/classes/' + table, rowData).
                     success(function(data, status, headers, config) {
                         // this callback will be called asynchronously
-                        deferred.resolve("1. " + JSON.stringify(rowData) + " posted to " + table);
+                        deferred.resolve(JSON.stringify(rowData) + " posted to " + table);
                     }).
                     error(function(data, status, headers, config) {
                         // called asynchronously if an error occurs

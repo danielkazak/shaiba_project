@@ -14,6 +14,7 @@ angular.module('shaibaApp')
         $rootScope.isLoggedIn = false;
         $rootScope.fbUserName = null;
         $rootScope.showFbLogin = false;
+        $rootScope.favStarCss = 'glyphicon glyphicon-star favstar-disabled pull-left';
 
     var facebookService = {
 
@@ -35,22 +36,28 @@ angular.module('shaibaApp')
                 });
         },
         refresh: function() {
+            var deferred = $q.defer();
             ngProgress.start();
             $facebook.api("/me").then(
                 function(response) {
                     $rootScope.welcomeMsg = "Welcome " + response.name;
-                    $rootScope.fbUserName = response.name;
+                    facebookService.userDetails.userName = response.name;
                     facebookService.userDetails.userEmail = response.email;
                     facebookService.userDetails.userId = response.id;
                     $rootScope.showFbLogin = false;
                     $rootScope.isLoggedIn = true;
+                    $rootScope.favStarCss = 'glyphicon glyphicon-star favstar pull-left';
                     ngProgress.complete();
+                    deferred.resolve(response);
                 },
                 function(err) {
                     $rootScope.welcomeMsg = "Please log in";
+                    $rootScope.favStarCss = 'glyphicon glyphicon-star favstar-disabled pull-left';
                     $rootScope.showFbLogin = true;
                     ngProgress.complete();
+                    deferred.reject(null);
                 });
+            return deferred.promise;
         },
         getUserId: function(){
             if ($rootScope.isLoggedIn === true){
@@ -63,7 +70,23 @@ angular.module('shaibaApp')
         login:  function() {
             $facebook.login().then(function() {
                 console.log(facebookService);
-                facebookService.refresh();
+                facebookService.refresh()
+                    .then(function(response){
+                       parse.getTable('users', false)
+                           .then(function(users){
+                               var boolean = false;
+                               angular.forEach(users, function(user){
+                                   console.log(user);
+                                   if(user.fbId === response.id){
+                                       boolean = true;
+                                   }
+                               });
+                               if (!boolean){
+                                   parse.postToparse('users', {fbId: response.id, fbUserName: response.name, fbEmail: response.email});
+                                   console.log('New user!!' + response.id);
+                               }
+                           });
+                    });
             });
         }
         /*logout: function() {

@@ -7,12 +7,13 @@
  * # FavStar
  */
 angular.module('shaibaApp')
-  .directive('favStar', function () {
+  .directive('favStar', function ($rootScope) {
     return {
-      template: ' <span ng-click="addToHall" class="glyphicon glyphicon-star favstar pull-left"/>',
+      template: '<span ng-click="addToHall()" class="{{ favStarCss }}"/>',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
 
       }
     };
   });
+

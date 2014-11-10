@@ -85,9 +85,15 @@ body {
 }
 
 .favstar {
-    color: #F1FF59;
+    color: #F0FF4F;
     font-size: 80px;
     cursor: pointer;
+}
+
+.favstar-disabled {
+    pointer-events: none;
+    color: #F5FF8A;
+    font-size: 80px;
 }
 
 .favstar:hover {
