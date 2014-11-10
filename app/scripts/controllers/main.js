@@ -55,14 +55,13 @@ angular.module('shaibaApp')
                     usersNumber: 1,
                     user: Facebook.userDetails.userId
                 }).then(function(success){
-                    AppAlert.add('success', 'המשפט התווסף להיכל התהילה', 4000);
                     parse.getTable('best', true);
                 },
                     function(error){
                         AppAlert.add('danger', 'התרחשה בעיה בשרת')
                     }
                 );
-
+                AppAlert.add('success', 'המשפט התווסף להיכל התהילה', 4000);
             } else {
                 AppAlert.add('warning', '!שייבה לא אמר כלום יא פלופ', 4000);
             }
