@@ -56,6 +56,7 @@ angular.module('shaibaApp')
                     user: Facebook.userDetails.userId
                 }).then(function(success){
                     AppAlert.add('success', 'המשפט התווסף להיכל התהילה', 4000);
+                    parse.getTable('best', true);
                 },
                     function(error){
                         AppAlert.add('danger', 'התרחשה בעיה בשרת')

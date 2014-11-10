@@ -42,6 +42,7 @@ Main.js/html
 2. Consider restrictions for the above (e.g.: How many additions per day?)
 3. Add [ENTER] key listener to generate sentence.
 4. Add site to favorites (button)
+5. Validate sentence in hall of fame
 
 Settings.js
 -----------
