@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'ngFacebook'
+    'ngFacebook',
+    'ngProgress'
   ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -8,7 +8,7 @@
  * Factory in the shaibaApp.
  */
 angular.module('shaibaApp')
-  .factory('parse', function ($http, $q) {
+  .factory('parse', function ($http, $q, ngProgress) {
         // Service logic
         // ...
         // Initialize headers for Shaiba_Generator at parse.com
@@ -31,20 +31,23 @@ angular.module('shaibaApp')
             self.adj = null;
             self.best = null;
 
-            self.getTable = function(tableName) {
+            self.getTable = function(tableName, update) {
                 var deferred = $q.defer();
 
-                if (self[tableName] !== null) {
+                if (!update && self[tableName] !== null) {
                     deferred.resolve(self[tableName]);
                 } else {
+                    ngProgress.start();
                     $http.get('https://api.parse.com/1/classes/' + tableName)
                         .success(function (response) {
                             console.log(response.results);
                             self[tableName] = response.results;
                             deferred.resolve(response.results);
+                            ngProgress.complete();
                         })
                         .error(function (response) {
                             deferred.reject(response);
+                            ngProgress.complete();
                         });
                 }
 
@@ -55,7 +58,7 @@ angular.module('shaibaApp')
             self.getRandom = function(tableName) {
                 var deferred = $q.defer();
 
-                self.getTable(tableName)
+                self.getTable(tableName, false)
                     .then(
                     function (response) {
                         deferred.resolve(response[Random(response.length)].name);

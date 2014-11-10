@@ -8,11 +8,12 @@
  * Factory in the shaibaApp.
  */
 angular.module('shaibaApp')
-  .factory('Facebook', function ($facebook, $q, $rootScope) {
+  .factory('Facebook', function ($facebook, $q, $rootScope, ngProgress, parse) {
     // Service logic
     // ...
         $rootScope.isLoggedIn = false;
         $rootScope.fbUserName = null;
+        $rootScope.showFbLogin = false;
 
     var facebookService = {
 
@@ -34,16 +35,21 @@ angular.module('shaibaApp')
                 });
         },
         refresh: function() {
+            ngProgress.start();
             $facebook.api("/me").then(
                 function(response) {
                     $rootScope.welcomeMsg = "Welcome " + response.name;
                     $rootScope.fbUserName = response.name;
                     facebookService.userDetails.userEmail = response.email;
                     facebookService.userDetails.userId = response.id;
+                    $rootScope.showFbLogin = false;
                     $rootScope.isLoggedIn = true;
+                    ngProgress.complete();
                 },
                 function(err) {
                     $rootScope.welcomeMsg = "Please log in";
+                    $rootScope.showFbLogin = true;
+                    ngProgress.complete();
                 });
         },
         getUserId: function(){

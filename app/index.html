@@ -1,14 +1,15 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="shaibaApp" ng-cloak="" ng-controller="IndexCtrl">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title ng-bind="Title.getTitle()"></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/ngprogress/ngProgress.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -16,7 +17,7 @@
     <link rel="stylesheet" href="styles/animation.css"/>
     <!-- endbuild -->
   </head>
-  <body ng-app="shaibaApp" ng-cloak="">
+  <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -26,10 +27,10 @@
       <div class="header">
           <div>
           <h5 ng-show="isLoggedIn" class="text-muted">{{ welcomeMsg }}</h5>
-          <img ng-hide="isLoggedIn" src="images/fblogin.png" ng-controller="MainCtrl" ng-click="loginFacebook()" class="fbbutton"/>
+          <img ng-show="showFbLogin" src="images/fblogin.png" ng-click="loginFacebook()" class="fbbutton"/>
           </div>
         <ul class="nav nav-pills pull-right">
-          <li><a ng-href="#"><span class="glyphicon glyphicon-home"/></a></li>
+          <li><a ng-href="#/"><span class="glyphicon glyphicon-home"/></a></li>
           <li><a ng-href="#/about"><span class="glyphicon glyphicon-cog"/></a></li>
           <li><a ng-href="#/halloffame"><span class="glyphicon glyphicon-star"/></a></li>
         </ul>
@@ -38,9 +39,7 @@
       <div ng-view="" class="slide"></div>
 
       <div class="footer">
-          <div>
-              <alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="alert.close()">{{ alert.msg }}</alert>
-          </div>
+          <div style="height: 50px;"><alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="alert.close()">{{ alert.msg }}</alert></div>
         <p><span class="glyphicon glyphicon-heart"></span> from the Consumer team.</p>
       </div>
     </div>
@@ -80,6 +79,7 @@
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/ng-facebook/ngFacebook.js"></script>
+    <script src="bower_components/ngprogress/build/ngProgress.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -94,6 +94,9 @@
         <script src="scripts/controllers/hall.js"></script>
         <script src="scripts/services/appalert.js"></script>
         <script src="scripts/services/facebook.js"></script>
+        <script src="scripts/directives/autocomplete.js"></script>
+        <script src="scripts/controllers/index.js"></script>
+        <script src="scripts/services/title.js"></script>
         <!-- endbuild -->
 </body>
 </html>

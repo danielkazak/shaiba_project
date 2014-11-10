@@ -8,8 +8,8 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope) {
-
+  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title) {
+        Title.setTitle('היכל התהילה');
         $scope.bestSentences = null;
 
         function compare(a, b) {
@@ -22,7 +22,7 @@ angular.module('shaibaApp')
             return 0;
         }
 
-        parse.getTable('best')
+        parse.getTable('best', false)
             .then(
             function(best) {
                 $scope.bestSentences = best;

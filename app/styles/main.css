@@ -84,6 +84,16 @@ body {
     width: 19%;
 }
 
+.favstar {
+    color: #F1FF59;
+    font-size: 80px;
+    cursor: pointer;
+}
+
+.favstar:hover {
+    color: #ffff00;
+}
+
 input{
     text-align: right;
     direction: RTL;

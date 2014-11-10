@@ -8,22 +8,14 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('MainCtrl', function ($scope, parse, $q, $timeout, DataManager, Facebook) {
-
+  .controller('MainCtrl', function ($scope, parse, $q, $timeout, DataManager, Facebook, AppAlert, Title) {
+        Title.setTitle('מחולל שייבה');
 
         // $scope objects
         $scope.nation = '';
         $scope.dish = '';
         $scope.adj = '';
 
-
-        Facebook.refresh();
-        $scope.loginFacebook = function(){
-            Facebook.login();
-        }
-        $scope.logoutFacebook = function(){
-            Facebook.logout();
-        }
 
         $scope.getSentence = function(){
             parse.getRandom('dishes')
@@ -53,6 +45,4 @@ angular.module('shaibaApp')
                     console.log("Failed to get nation: " + result);
                 });
         }
-
-
     });
