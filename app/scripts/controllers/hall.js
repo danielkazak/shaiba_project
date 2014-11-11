@@ -71,13 +71,13 @@ angular.module('shaibaApp')
                     $scope.bestSentences.sort(compare);
                     for(var i = 0; i < $scope.bestSentences.length; i++) {
                         $scope.bestSentences[i].prevGrade = $scope.bestSentences[i].grade;
-                        var current = $scope.bestSentences[i].usersVoted;
-                        for(var j = 0; j < current.length; j++){
-                            if(current[j] === Facebook.getUserId() || Facebook.getUserId() === ''){
-                                $scope.bestSentences.isReadOnly = true;
+                        var current = $scope.bestSentences[i];
+                        for(var j = 0; j < current.usersVoted.length; j++){
+                            if(current.usersVoted[j] === Facebook.getUserId() || Facebook.getUserId() === ''){
+                                current.isReadOnly = true;
                             }
                             else {
-                                $scope.bestSentences.isReadOnly = false;
+                                current.isReadOnly = false;
                             }
                         }
                     }

@@ -12,7 +12,7 @@
                 <tr ng-repeat="sentence in bestSentences">
                     <td>{{$index+1}}</td>
                     <td>{{sentence.name}}</td>
-                    <td><rating ng-model="sentence.grade" max="max" readonly="bestSentences.isReadOnly" ng-click="changeRating($index)" class="rating"></rating></td>
+                    <td><rating ng-model="sentence.grade" max="max" readonly="sentence.isReadOnly" ng-click="changeRating($index)" class="rating"></rating></td>
                 </tr>
             </tbody>
         </table>
