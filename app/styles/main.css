@@ -85,19 +85,19 @@ body {
 }
 
 .favstar {
-    color: #F0FF4F;
+    color: #FFD65C;
     font-size: 80px;
     cursor: pointer;
 }
 
 .favstar-disabled {
     pointer-events: none;
-    color: #F5FF8A;
+    color: #FFEEBD;
     font-size: 80px;
 }
 
 .favstar:hover {
-    color: #ffff00;
+    color: #FFC929;
 }
 
 input{
@@ -125,6 +125,7 @@ input{
     -moz-transition: border 0.15s linear 0s, box-shadow 0.15s linear 0s, color 0.15s linear 0s;
     -o-transition: border 0.15s linear 0s, box-shadow 0.15s linear 0s, color 0.15s linear 0s;
 }
+
 input:focus {
     color: #333;
     border-color: rgba(41, 92, 161, 0.4);
@@ -141,4 +142,9 @@ input:focus {
 
 .white-color{
     background-color: white;
+}
+
+.nav-custom {
+    color: #FFC929;
+    font-size: 20px;
 }

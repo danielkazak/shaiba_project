@@ -8,7 +8,7 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title) {
+  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title, $route) {
         Title.setTitle('היכל התהילה');
         $scope.bestSentences = null;
 
@@ -29,7 +29,7 @@ angular.module('shaibaApp')
                 $scope.bestSentences.sort(compare);
                 for(var i = 0; i < $scope.bestSentences.length; i++) {
                     $scope.bestSentences[i].prevGrade = $scope.bestSentences[i].grade;
-                    $scope.bestSentences[i].alreadyChanged = false;
+
                 }
             },
             function(result){
