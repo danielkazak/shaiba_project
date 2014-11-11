@@ -53,7 +53,8 @@ angular.module('shaibaApp')
                         + ' ' + $scope.adj,
                     grade: 4,
                     usersNumber: 1,
-                    user: Facebook.userDetails.userId
+                    user: Facebook.userDetails.userId,
+                    usersVoted: {"__op":"AddUnique","objects":[Facebook.userDetails.userId]}
                 }).then(function(success){
                     parse.getTable('best', true);
                 },
