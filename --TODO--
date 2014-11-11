@@ -48,9 +48,17 @@ Main.js/html
 Settings.js
 -----------
 
-1. Valid word validation
+1. DONE: (should add some hebrew\numbers\white spaces validations with regex) Valid word validation
 2. Word recognition (e.g.: Male/Female relation)
-
+    2.1 When adding a dish we should ask the user if it's male/female and if it's plural/single. We'd do it by adding 4
+    options to the dish which represents one of the nations as male/female/plural/single, and let him choose what works
+    the best.
+    2.2 When adding a nation, we should tell the user that it suppose to represents one male dish, and add one male
+    specific dish infront of the nation and ask him if it works. If not he can change it.
+    2.3 When adding a adjective we would generate 4 sentences with that adjective, one for each option and ask the user
+    which of them is ok. if it's not all of them, we'd ask him to add the right sentence for the rest.
+3. Show a dropdown of all the words that begins the same way, so the user could see if it already exists. (need to
+   check if we could use angular-ui's typeahead for this).
 
 Future
 -------
@@ -60,3 +68,6 @@ Future
 4. Secure data (ask Dotan)
 5. User reward system
 6. DONE: Initialize the tables when the app bootstraps. (now its in Index.html)
+7. Open the option to log in to the site as admins (for Kazak, Doron etc.) and to enable us to review all of the words,
+   all of the hall of fame sentences, and the marked by users' words and stuff like that. Of course we should be able
+   to delete fucked up words from the site.
