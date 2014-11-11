@@ -22,21 +22,21 @@ angular.module('shaibaApp')
             return 0;
         }
 
-        parse.getTable('best', false)
+        validateRatingFunctionality();
+        /*parse.getTable('best', false)
             .then(
             function(best) {
                 $scope.bestSentences = best;
                 $scope.bestSentences.sort(compare);
-                for(var i = 0; i < $scope.bestSentences.length; i++) {
+               *//* for(var i = 0; i < $scope.bestSentences.length; i++) {
                     $scope.bestSentences[i].prevGrade = $scope.bestSentences[i].grade;
-                }
+                }*//*
             },
             function(result){
                 console.log("Failed to get dish: " + result);
-            });
+            });*/
 
         //$scope.rate = 5;
-        $scope.isReadOnly = false;
         $scope.max = 10;
 
         $scope.showGrades = function() {
@@ -60,5 +60,36 @@ angular.module('shaibaApp')
             parse.putToParse('best', ratingBar.objectId, data);
             console.log(ratingBar);
         }
+
+
+        // Validating user rating options (whether voted already or not)
+        function validateRatingFunctionality(){
+            parse.getTable('best', false)
+                .then(
+                function(best) {
+                    $scope.bestSentences = best;
+                    $scope.bestSentences.sort(compare);
+                    for(var i = 0; i < $scope.bestSentences.length; i++) {
+                        $scope.bestSentences[i].prevGrade = $scope.bestSentences[i].grade;
+                        var current = $scope.bestSentences[i].usersVoted;
+                        for(var j = 0; j < current.length; j++){
+                            if(current[j] === Facebook.getUserId() || Facebook.getUserId() === ''){
+                                $scope.bestSentences.isReadOnly = true;
+                            }
+                            else {
+                                $scope.bestSentences.isReadOnly = false;
+                            }
+                        }
+                    }
+                },
+                function(result){
+                    console.log("Failed to get dish: " + result);
+                });
+        }
+        // Watch is a user is logged in to run validation
+        $rootScope.$watch(function(rootScope) { return rootScope.isLoggedIn },
+            function() {
+                validateRatingFunctionality();
+            });
 
   });
