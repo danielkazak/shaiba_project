@@ -57,3 +57,4 @@ Future
 3. Shaiba face animation upon generate
 4. Secure data (ask Dotan)
 5. User reward system
+6. DONE: Initialize the tables when the app bootstraps. (now its in Index.html)
