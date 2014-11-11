@@ -42,8 +42,12 @@
       <div ng-view="" class="slide"></div>
 
       <div class="footer">
-          <div style="height: 50px;"><alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="alert.close()">{{ alert.msg }}</alert></div>
-        <p><span class="glyphicon glyphicon-heart"></span> from the Consumer team.</p>
+          <div style="height: 50px;">
+              <alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="alert.close()">
+              <strong>{{ alert.msg }}</strong>
+              </alert>
+          </div>
+        <!--<p><span class="glyphicon glyphicon-heart"></span> from the Consumer team.</p>-->
       </div>
     </div>
 

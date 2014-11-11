@@ -145,6 +145,11 @@ input:focus {
 }
 
 .nav-custom {
-    color: #FFC929;
+    color: #DEA704;
+    font-size: 20px;
+}
+
+.rating {
+    color: #FFEA00;
     font-size: 20px;
 }

@@ -29,7 +29,6 @@ angular.module('shaibaApp')
                 $scope.bestSentences.sort(compare);
                 for(var i = 0; i < $scope.bestSentences.length; i++) {
                     $scope.bestSentences[i].prevGrade = $scope.bestSentences[i].grade;
-
                 }
             },
             function(result){
