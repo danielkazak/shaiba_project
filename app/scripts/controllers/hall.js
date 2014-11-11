@@ -53,7 +53,10 @@ angular.module('shaibaApp')
             ratingBar.usersNumber++;
             ratingBar.alreadyChanged = true;
             $scope.bestSentences.sort(compare);
-            var data = {grade: ratingBar.grade, usersNumber: ratingBar.usersNumber};
+            var data = {
+                grade: ratingBar.grade,
+                usersNumber: ratingBar.usersNumber,
+                "usersVoted":{"__op":"AddUnique","objects":[Facebook.getUserId()]}};
             parse.putToParse('best', ratingBar.objectId, data);
             console.log(ratingBar);
         }
