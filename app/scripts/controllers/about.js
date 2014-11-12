@@ -30,7 +30,7 @@ angular.module('shaibaApp')
                         state = SharedData.validationStates.WRONG_LENGTH;
                     }
 
-                    if (state === SharedData.validationStatus.VALID) {
+                    if (state === SharedData.validationStates.VALID) {
                         for (var i = 0; i < table.length; i++) {
                             if (table[i].name === value) {
                                 state = SharedData.validationStates.ALREADY_EXISTS;
