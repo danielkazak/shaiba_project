@@ -63,7 +63,6 @@ angular.module('shaibaApp')
             if ($rootScope.isLoggedIn === true){
                 return facebookService.userDetails.userId;
             } else {
-                console.log($rootScope.isLoggedIn);
                 return '';
             }
         },
