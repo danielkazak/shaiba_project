@@ -29,7 +29,6 @@ angular.module('shaibaApp')
                         (value.length > 20 || value.length < 2)) {
                         state = SharedData.validationStates.WRONG_LENGTH;
                     }
-
                     if (state === SharedData.validationStates.VALID) {
                         for (var i = 0; i < table.length; i++) {
                             if (table[i].name === value) {
@@ -56,14 +55,14 @@ angular.module('shaibaApp')
                             .then(function (response) {
                                 parse.getTable(parseTable, true);
                                 console.log(response);
-                                AppAlert.add('success', parseVal + SharedData.validationStates.VALID, 4000);
+                                AppAlert.add(SharedData.appAlertTypes.SUCCESS, parseVal + SharedData.validationStates.VALID, 4000);
                             },
                             function (error) {
                                 console.log("ERROR: " + error);
-                                AppAlert.add('danger', parseVal + 'לא התווסף, שגיאה:' + error);
+                                AppAlert.add(SharedData.appAlertTypes.DANGER, parseVal + 'לא התווסף, שגיאה:' + error);
                             });
                     } else {
-                        AppAlert.add('danger', state, 4000);
+                        AppAlert.add(SharedData.appAlertTypes.WARNING, state, 4000);
                     }
                 },
                 function(error) {

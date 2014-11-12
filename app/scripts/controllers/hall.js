@@ -8,9 +8,10 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title, $route) {
+  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title, AppAlert, SharedData) {
         Title.setTitle('היכל התהילה');
         $scope.bestSentences = null;
+        $scope.max = 10;
 
         function compare(a, b) {
             if (a.grade > b.grade) {
@@ -36,29 +37,37 @@ angular.module('shaibaApp')
                 console.log("Failed to get dish: " + result);
             });*/
 
-        //$scope.rate = 5;
-        $scope.max = 10;
-
         $scope.showGrades = function() {
             console.log($scope.bestSentences);
         }
 
-
         $scope.changeRating = function(index) {
-            var ratingBar = $scope.bestSentences[index];
-            console.log(ratingBar);
+            var sentence = $scope.bestSentences[index];
+            console.log(sentence);
 
-            var newGrade = (ratingBar.usersNumber * ratingBar.prevGrade + ratingBar.grade) / (ratingBar.usersNumber + 1);
-            ratingBar.prevGrade = ratingBar.grade = newGrade;
-            ratingBar.usersNumber++;
-            ratingBar.alreadyChanged = true;
+            var newGrade = (sentence.usersNumber * sentence.prevGrade + sentence.grade) / (sentence.usersNumber + 1);
+            sentence.grade = newGrade;
+            sentence.usersNumber++;
+            sentence.isReadOnly = true;
             $scope.bestSentences.sort(compare);
+
             var data = {
-                grade: ratingBar.grade,
-                usersNumber: ratingBar.usersNumber,
+                grade: sentence.grade,
+                usersNumber: sentence.usersNumber,
                 "usersVoted":{"__op":"AddUnique","objects":[Facebook.getUserId()]}};
-            parse.putToParse('best', ratingBar.objectId, data);
-            console.log(ratingBar);
+
+            parse.putToParse('best', sentence.objectId, data).
+                then(function(response) {
+                    sentence.prevGrade = sentence.grade;
+                }, function(response) {
+                    sentence.grade = sentence.prevGrade;
+                    sentence.usersNumber--;
+                    sentence.isReadOnly = false;
+                    $scope.bestSentences.sort(compare);
+                    AppAlert.add(SharedData.appAlertTypes.DANGER, response);
+                });
+
+            console.log(sentence);
         }
 
 
@@ -86,7 +95,8 @@ angular.module('shaibaApp')
                     console.log("Failed to get dish: " + result);
                 });
         }
-        // Watch is a user is logged in to run validation
+
+        // Watch if a user is logged in to run validation
         $rootScope.$watch(function(rootScope) { return rootScope.isLoggedIn },
             function() {
                 validateRatingFunctionality();

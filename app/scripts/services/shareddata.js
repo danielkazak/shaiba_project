@@ -17,6 +17,13 @@ angular.module('shaibaApp')
                             NOT_HEBREW: 'שייבה פלופ מספיק כבר בעברית. בואו לא נחצה גבולות שפה כרגע.',
                             WHITE_SPACES: 'תפסיק לדחוף רווחים לשייבה.',
                             WRONG_LENGTH: 'אחי, תנסה שוב משהו באורך הגיוני.',
-                            CONTAINS_NUMBERS: 'מה מספרים אחי, מה? תעזור לשייבה להתפקס עם אותיות בעברית.'}
+                            CONTAINS_NUMBERS: 'מה מספרים אחי, מה? תעזור לשייבה להתפקס עם אותיות בעברית.'},
+
+        parseResponse: {SUCCESS: ' נוסף בהצלחה.',
+                        FAILED: ' לא התווסף. פארס כשל.'},
+
+        appAlertTypes: {SUCCESS: 'success',
+                        WARNING: 'warning',
+                        DANGER: 'danger'}
     };
   });

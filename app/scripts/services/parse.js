@@ -8,7 +8,7 @@
  * Factory in the shaibaApp.
  */
 angular.module('shaibaApp')
-  .factory('parse', function ($http, $q, ngProgress) {
+  .factory('parse', function ($http, $q, ngProgress, SharedData) {
         // Service logic
         // ...
         // Initialize headers for Shaiba_Generator at parse.com
@@ -90,11 +90,11 @@ angular.module('shaibaApp')
                 $http.put('https://api.parse.com/1/classes/' + table + '/' + column, data).
                     success(function(data, status, headers, config) {
                         // this callback will be called asynchronously
-                        deferred.resolve(column + " posted to " + table);
+                        deferred.resolve(SharedData.parseResponse.SUCCESS);
                     }).
                     error(function(data, status, headers, config) {
                         // called asynchronously if an error occurs
-                        deferred.reject(column + " wasnt posted. Reason: " + status);
+                        deferred.reject(SharedData.parseResponse.FAILED);
                     });
                 return deferred.promise;
             }
