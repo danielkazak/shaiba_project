@@ -8,7 +8,7 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('MainCtrl', function ($scope, parse, $q, $timeout, DataManager, Facebook, AppAlert, Title, $rootScope) {
+  .controller('MainCtrl', function ($scope, parse, $q, $timeout, DataManager, Facebook, AppAlert, Title, $rootScope, SharedData) {
         Title.setTitle('מחולל שייבה');
 
         // $scope objects
@@ -59,12 +59,12 @@ angular.module('shaibaApp')
                     parse.getTable('best', true);
                 },
                     function(error){
-                        AppAlert.add('danger', 'התרחשה בעיה בשרת')
+                        AppAlert.add(SharedData.appAlertTypes.DANGER, 'התרחשה בעיה בשרת')
                     }
                 );
-                AppAlert.add('success', 'המשפט התווסף להיכל התהילה', 4000);
+                AppAlert.add(SharedData.appAlertTypes.SUCCESS, 'המשפט התווסף להיכל התהילה', 4000);
             } else {
-                AppAlert.add('warning', '!שייבה לא אמר כלום יא פלופ', 4000);
+                AppAlert.add(SharedData.appAlertTypes.WARNING, '!שייבה לא אמר כלום יא פלופ', 4000);
             }
         }
     });

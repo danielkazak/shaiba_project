@@ -150,6 +150,18 @@ input:focus {
 }
 
 .rating {
-    color: #FFEA00;
+    color: #FFBA42;
     font-size: 20px;
+}
+
+.rated-success {
+    background-color: #EDFFD6;
+}
+
+.rated-pending {
+    background-color: #FFF5BF;
+}
+
+.rated-failed {
+    background-color: #FFEBEB;
 }

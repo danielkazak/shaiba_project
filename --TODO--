@@ -1,6 +1,7 @@
 Hall of fame
 ------------
 
+DONE(need to check about coloring the row. probably shouldn't follow the row.):
 - User experience flow
     1. User picks rating
     2. Rating changes accordingly
@@ -26,6 +27,11 @@ Hall of fame
 
  - ADD INFINITE SCROLLER FOR SENTENCES INSIDE THE HALL
 
+ - DONE (the problem was in the for loop that decide whether the sentence should be readonly): I've notices a bug today.
+   When i was logged in as Michael in incognito mode on chrome and added a sentence, i could refresh the page and give
+   that sentence a rate. I could do it more than once. Maybe it got something to do with the way facebook works in
+   incognito mode.
+
 Facebook Service
 ----------------
 
@@ -40,9 +46,10 @@ Main.js/html
 
 1. DONE: (learn about using $rootScope.)Allow adding a sentence (only if there's an active user) to the hall of fame.
 2. Consider restrictions for the above (e.g.: How many additions per day?)
+3. When user tries to add a sentence we should check if it already exists.
 3. Add [ENTER] key listener to generate sentence.
 4. Add site to favorites (button)
-5. DONE: Validate sentence in hall of fame
+5. DONE: Validate sentence in hall of fame (Doron asks: what does that mean???)
 6. Add CELEBRATIONS if a sentence got favorited
 
 Settings.js
@@ -71,3 +78,5 @@ Future
 7. Open the option to log in to the site as admins (for Kazak, Doron etc.) and to enable us to review all of the words,
    all of the hall of fame sentences, and the marked by users' words and stuff like that. Of course we should be able
    to delete fucked up words from the site.
+8. Question - how come i can access parse.best table from the HallCtrl... Need to figure out how it works, and what's
+   the difference between a factory and a service then.
