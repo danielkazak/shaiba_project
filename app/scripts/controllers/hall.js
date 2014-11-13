@@ -68,7 +68,7 @@ angular.module('shaibaApp')
                     }
                     $scope.bestSentences.sort(compare);
                     AppAlert.add(SharedData.appAlertTypes.DANGER, response);
-                    sentence.color = "alert-failed rating-danger";
+                    sentence.color = "alert-danger rating-failed";
                     $timeout(function() {
                         sentence.color = "";
                     }, 2000);
