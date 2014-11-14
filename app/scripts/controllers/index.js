@@ -15,7 +15,7 @@ angular.module('shaibaApp')
         parse.getTable('best');
         parse.getTable('users');
 
-        AppAlert.add('info', 'לחצו על ראשו של שייבה', 7000);
+        /*AppAlert.add('info', 'לחצו על ראשו של שייבה', 7000);*/
 
         Facebook.refresh();
 
@@ -24,4 +24,6 @@ angular.module('shaibaApp')
         }
 
         $scope.Title = Title;
-  });
+
+
+    });

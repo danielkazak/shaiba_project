@@ -76,12 +76,10 @@ angular.module('shaibaApp')
                         $scope.bestSentences[i].prevGrade = $scope.bestSentences[i].grade;
                         $scope.bestSentences[i].color = '';
                         var current = $scope.bestSentences[i];
-                        for(var j = 0; j < current.usersVoted.length; j++){
+                        current.isReadOnly = false;
+                        for(var j = 0; j < current.usersVoted.length && current.isReadOnly === false; j++){
                             if(current.usersVoted[j] === Facebook.getUserId() || Facebook.getUserId() === ''){
                                 current.isReadOnly = true;
-                            }
-                            else {
-                                current.isReadOnly = false;
                             }
                         }
                     }

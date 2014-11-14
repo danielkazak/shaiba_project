@@ -30,6 +30,7 @@
       <div class="header">
           <div>
           <h5 ng-show="isLoggedIn" class="text-muted">{{ welcomeMsg }}</h5>
+          <!--<span id="bookmarkme" class="glyphicon glyphicon-bookmark pull-right bookmarkbtn"/>-->
           <img ng-show="showFbLogin" src="images/fblogin.png" ng-click="loginFacebook()" class="fbbutton"/>
           </div>
         <ul class="nav nav-pills pull-right">
@@ -43,7 +44,7 @@
 
       <div class="footer">
           <div style="height: 50px;">
-              <alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="alert.close()">
+              <alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="alert.close()" style="direction: RTL">
               <strong>{{ alert.msg }}</strong>
               </alert>
           </div>
@@ -62,6 +63,7 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>
+
 
     <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
