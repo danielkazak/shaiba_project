@@ -8,11 +8,11 @@
  * Factory in the shaibaApp.
  */
 angular.module('shaibaApp')
-  .factory('Title', function () {
+  .factory('Title', function (SharedData) {
     // Service logic
     // ...
 
-    var title = 'מחולל שייבה';
+    var title = SharedData.siteTitles.MAIN;
 
     // Public API here
     return {

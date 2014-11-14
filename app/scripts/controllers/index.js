@@ -15,8 +15,6 @@ angular.module('shaibaApp')
         parse.getTable('best');
         parse.getTable('users');
 
-        /*AppAlert.add('info', 'לחצו על ראשו של שייבה', 7000);*/
-
         Facebook.refresh();
 
         $scope.loginFacebook = function(){

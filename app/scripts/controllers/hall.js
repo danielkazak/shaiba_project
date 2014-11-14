@@ -8,9 +8,9 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title, AppAlert, SharedData, $timeout) {
-        Title.setTitle('היכל התהילה');
-        $scope.bestSentences = null;
+  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title, AppAlert, SharedData) {
+        Title.setTitle(SharedData.siteTitles.HALL);
+        $scope.bestSentences = {};
         $scope.max = 10;
 
         function compare(a, b) {

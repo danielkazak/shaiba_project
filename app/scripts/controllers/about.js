@@ -9,7 +9,7 @@
  */
 angular.module('shaibaApp')
   .controller('AboutCtrl', function ($scope, parse, AppAlert, Title, SharedData, $q) {
-        Title.setTitle("הגדרות");
+        Title.setTitle(SharedData.siteTitles.SETTINGS);
         // Send attributes to class attribute for directive (so onkeyup can send attribute directly)
         $scope.dishes = 'dishes';
         $scope.nations = 'nations';

@@ -55,7 +55,6 @@ angular.module('shaibaApp')
                 return deferred.promise;
             }
 
-
             self.getRandom = function(tableName) {
                 var deferred = $q.defer();
 
