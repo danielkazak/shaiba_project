@@ -155,13 +155,36 @@ input:focus {
 }
 
 .rated-success {
-    background-color: #EDFFD6;
+    animation: successFade 3s;
+    -webkit-animation: successFade 3s;
 }
 
 .rated-pending {
+    color: #8a6d3b;
     background-color: #FFF5BF;
 }
 
 .rated-failed {
-    background-color: #FFEBEB;
+    animation: failedFade 5s;
+    -webkit-animation: failedFade 5s;
+}
+
+@keyframes  successFade {
+    from {background-color: #EDFFD6; color: #3c763d;}
+    to {background-color: white; color: black;}
+}
+
+@keyframes failedFade {
+    from {background-color: #FFEBEB; color: #a94442;}
+    to {background-color: white; color: black;}
+}
+
+@-webkit-keyframes successFade {
+    from {background-color: #EDFFD6; color: #3c763d;}
+    to {background-color: white; color: black;}
+}
+
+@-webkit-keyframes failedFade {
+    from {background-color: #FFEBEB; color: #a94442;}
+    to {background-color: white; color: black;}
 }

@@ -25,20 +25,13 @@ angular.module('shaibaApp')
 
         validateRatingFunctionality();
 
-        $scope.showGrades = function() {
-            console.log($scope.bestSentences);
-            console.log(parse.best);
-            console.log($scope.bestSentences === parse.best);
-        }
-
+        // This function is responsible to the progress that should happen after a user tries to rate a sentence
         $scope.changeRating = function(index) {
             var sentence = $scope.bestSentences[index];
-            console.log(sentence);
 
             if (sentence.isReadOnly) { return; }
 
-            sentence.color = "alert-warning rating-pending";
-
+            sentence.color = "rated-pending";
             var newGrade = (sentence.usersNumber * sentence.prevGrade + sentence.grade) / (sentence.usersNumber + 1);
             sentence.grade = newGrade;
             sentence.usersNumber++;
@@ -54,27 +47,21 @@ angular.module('shaibaApp')
             parse.putToParse('best', sentence.objectId, data).
                 then(function(response) {
                     sentence.prevGrade = sentence.grade;
-                    sentence.color = "alert-success rating-success";
-                    $timeout(function() {
-                        sentence.color = "";
-                    }, 2000);
+                    sentence.color = "rated-success";
                 }, function(response) {
                     sentence.grade = sentence.prevGrade;
                     sentence.usersNumber--;
                     sentence.isReadOnly = false;
-                    var index = sentence.usersVoted.indexOf(Facebook.getUserId()); //IE 8,9 don't support indexOf
-                    if (index > -1) {
-                        sentence.usersVoted.splice(index, 1);
+
+                    var sentenceIndex = sentence.usersVoted.indexOf(Facebook.getUserId()); //IE 8,9 don't support indexOf
+                    if (sentenceIndex > -1) {
+                        sentence.usersVoted.splice(sentenceIndex, 1);
                     }
                     $scope.bestSentences.sort(compare);
-                    AppAlert.add(SharedData.appAlertTypes.DANGER, response);
-                    sentence.color = "alert-danger rating-failed";
-                    $timeout(function() {
-                        sentence.color = "";
-                    }, 2000);
-                });
 
-            console.log(sentence);
+                    AppAlert.add(SharedData.appAlertTypes.DANGER, response, 5000);
+                    sentence.color = "rated-failed";
+                });
         }
 
 
