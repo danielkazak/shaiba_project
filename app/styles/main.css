@@ -187,7 +187,6 @@ input:focus {
 @-webkit-keyframes failedFade {
     from {background-color: #FFEBEB; color: #a94442;}
     to {background-color: white; color: black;}
-    background-color: #FFEBEB;
 }
 
 @-webkit-keyframes spaceboots {
