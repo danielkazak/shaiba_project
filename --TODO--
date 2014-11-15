@@ -67,6 +67,13 @@ Settings.js
 3. Show a dropdown of all the words that begins the same way, so the user could see if it already exists. (need to
    check if we could use angular-ui's typeahead for this).
 
+
+Admin
+-----
+1. Facebook service: validate isAdmin by boolean from the db.
+2. Filter table contents
+3.
+
 Future
 -------
 1. Choose category: Food / Technology / Science

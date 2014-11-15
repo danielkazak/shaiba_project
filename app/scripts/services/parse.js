@@ -96,6 +96,20 @@ angular.module('shaibaApp')
                         deferred.reject(SharedData.parseResponse.FAILED);
                     });
                 return deferred.promise;
+            };
+
+            self.removeFromParse = function(table, data){
+                var deferred = $q.defer();
+                $http.delete('https://api.parse.com/1/classes/' + table + '/' + data).
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        deferred.resolve(SharedData.parseResponse.SUCCESS);
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        deferred.reject(SharedData.parseResponse.FAILED);
+                    });
+                return deferred.promise;
             }
 
         }

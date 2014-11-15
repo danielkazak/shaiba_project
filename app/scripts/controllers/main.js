@@ -11,7 +11,7 @@ angular.module('shaibaApp')
   .controller('MainCtrl', function ($scope, parse, $q, $timeout, Facebook, AppAlert, Title, $rootScope, SharedData) {
         Title.setTitle('מחולל שייבה');
 
-        AppAlert.add('info', 'לחצו על ראשו של שייבה', 5000);
+        /*AppAlert.add('info', 'לחצו על ראשו של שייבה', 5000);*/
 
         // $scope objects
         $scope.nation = '';
@@ -85,7 +85,7 @@ angular.module('shaibaApp')
                         AppAlert.add(SharedData.appAlertTypes.DANGER, 'וואלה הפארס לא מגיב, נשמה ' + error);
                     });
             } else {
-                AppAlert.add(SharedData.appAlertTypes.WARNING, '.שייבה לא אמר כלום יא פלופ! טיפ: לחץ על הראש', 4000);
+                AppAlert.add(SharedData.appAlertTypes.WARNING, 'שייבה לא אמר כלום יא פלופ! טיפ: לחץ על הראש.', 4000);
             }
         }
     });

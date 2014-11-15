@@ -27,18 +27,23 @@
 
     <!-- Add your site or application content here -->
     <div class="container">
+
       <div class="header">
-          <div>
-          <h5 ng-show="isLoggedIn" class="text-muted">{{ welcomeMsg }}</h5>
-          <!--<span id="bookmarkme" class="glyphicon glyphicon-bookmark pull-right bookmarkbtn"/>-->
-          <img ng-show="showFbLogin" src="images/fblogin.png" ng-click="loginFacebook()" class="fbbutton"/>
+          <div >
+
+              <img ng-show="showFbLogin" src="images/fblogin.png" ng-click="loginFacebook()" class="fbbutton"/>
           </div>
-        <ul class="nav nav-pills pull-right">
-          <li><a ng-href="#/"><span class="glyphicon glyphicon-home  nav-custom"/></a></li>
-          <li><a ng-href="#/about"><span class="glyphicon glyphicon-cog  nav-custom"/></a></li>
-          <li><a ng-href="#/halloffame"><span class="glyphicon glyphicon-star  nav-custom"/></a></li>
-        </ul>
+           <div>
+               <ul class="nav nav-pills pull-left">
+               <li><a ng-href="#/admin" ng-show="isAdmin"><span class="glyphicon glyphicon-cog nav-admin"/></a></li>
+               <li><h5 class="fbwelcome" ng-show="isLoggedIn" class="text-muted">{{ welcomeMsg }}</h5></li>
+               </ul>
+                <ul class="nav nav-pills pull-right" ng-repeat="item in menuItems">
+                    <li><a ng-href="{{item.href}}"><span class="{{item.class}}" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked($index)"/></a></li>
+                </ul>
+            </div>
       </div>
+
 
       <div ng-view="" class="slide"></div>
 
@@ -108,6 +113,7 @@
         <script src="scripts/services/title.js"></script>
         <script src="scripts/directives/favstar.js"></script>
         <script src="scripts/services/shareddata.js"></script>
+        <script src="scripts/controllers/admin.js"></script>
         <!-- endbuild -->
 </body>
 </html>

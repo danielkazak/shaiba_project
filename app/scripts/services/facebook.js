@@ -12,6 +12,7 @@ angular.module('shaibaApp')
     // Service logic
     // ...
         $rootScope.isLoggedIn = false;
+        $rootScope.isAdmin = false;
         $rootScope.fbUserName = null;
         $rootScope.showFbLogin = false;
         $rootScope.favStarCss = 'glyphicon glyphicon-star favstar-disabled pull-left';
@@ -44,6 +45,9 @@ angular.module('shaibaApp')
                     facebookService.userDetails.userName = response.name;
                     facebookService.userDetails.userEmail = response.email;
                     facebookService.userDetails.userId = response.id;
+                    if (response.name === 'Daniel Kazak' || response.name === 'Doron Sages'){
+                        $rootScope.isAdmin = true;
+                    }
                     $rootScope.showFbLogin = false;
                     $rootScope.isLoggedIn = true;
                     $rootScope.favStarCss = 'glyphicon glyphicon-star favstar pull-left';

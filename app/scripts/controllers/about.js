@@ -59,7 +59,7 @@ angular.module('shaibaApp')
                             },
                             function (error) {
                                 console.log("ERROR: " + error);
-                                AppAlert.add(SharedData.appAlertTypes.DANGER, parseVal + 'לא התווסף, שגיאה:' + error);
+                                AppAlert.add(SharedData.appAlertTypes.DANGER, parseVal + 'השוב הפארס עושה לנו בעיות...' + error);
                             });
                     } else {
                         AppAlert.add(SharedData.appAlertTypes.WARNING, state, 4000);
