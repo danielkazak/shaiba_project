@@ -17,7 +17,9 @@ angular.module('shaibaApp')
         $scope.tables = { // Contain tables as an object for DOM generation
             dishes: {name: 'dishes'},
             nations: {name: 'nations'},
-            adj: {name: 'adj'}
+            adj: {name: 'adj'},
+            users: {name: 'users'},
+            best: {name: 'best'}
         }
 
         // Get all tables content

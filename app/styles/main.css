@@ -141,6 +141,13 @@ body {
     background-color: #EDF0FF;
 }
 
+.dbitem-id {
+    margin-left: 20px;
+    color: #E8E8EB;
+    font-weight: normal;
+    font-size: 14px;
+}
+
 .dbitem-remove {
     margin-top: 3px;
     color: #EB6A59;
@@ -174,7 +181,7 @@ body {
     color: #FFC929;
 }
 
-input{
+input[type="text"]{
     text-align: right;
     direction: RTL;
 
@@ -200,7 +207,7 @@ input{
     -o-transition: border 0.15s linear 0s, box-shadow 0.15s linear 0s, color 0.15s linear 0s;
 }
 
-input:focus {
+input[type="text"]:focus {
     color: #333;
     border-color: rgba(41, 92, 161, 0.4);
 

@@ -2,11 +2,12 @@
 
     <div class="dbwrapper">
         <div class="dbcontent">
-            <input ng-model="tezt"/>
-            <ul class="dbitem {{item.color}}" ng-repeat="item in tableContent | filter:tezt">
+            <input type="text" ng-model="$parent.searchFilter.$" tooltip="Type name, id or fbId" tooltip-trigger="focus" tooltip-placement="top"/>
+            <ul class="dbitem {{item.color}}" ng-repeat="item in tableContent | filter:searchFilter">
                 <span class="dbitem-content">
-                    {{item.name}}
+                    {{item.name}}{{item.fbUserName}}
                     <span class="pull-left glyphicon glyphicon-remove dbitem-remove" ng-click="removeDbItem(item.objectId, $index)"/>
+                    <span class="pull-left dbitem-id">{{item.objectId}}{{item.fbId}}</span>
                 </span>
             </ul>
         </div>
