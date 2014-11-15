@@ -72,13 +72,16 @@ angular.module('shaibaApp')
 
             self.postToparse = function(table, rowData) {
                 var deferred = $q.defer();
+                ngProgress.start();
                 $http.post('https://api.parse.com/1/classes/' + table, rowData).
                     success(function(data, status, headers, config) {
                         // this callback will be called asynchronously
+                        ngProgress.complete();
                         deferred.resolve(JSON.stringify(rowData) + " posted to " + table);
                     }).
                     error(function(data, status, headers, config) {
                         // called asynchronously if an error occurs
+                        ngProgress.complete();
                         deferred.reject(data.name + " wasnt posted. Reason: " + status);
                     });
                 return deferred.promise;

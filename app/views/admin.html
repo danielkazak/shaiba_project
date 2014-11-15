@@ -3,7 +3,7 @@
     <div class="dbwrapper">
         <div class="dbcontent">
             <input ng-model="searchText" tooltip="Type anything to filter the results" tooltip-trigger="focus" tooltip-placement="top"/>
-            <ul class="dbitem {{selectedItem.color}}" ng-repeat="item in tableContent | filter:searchText">
+            <ul class="dbitem {{item.color}}" ng-repeat="item in tableContent | filter:searchText">
                 <span class="dbitem-content">
                     {{item.name}}
                     <span class="pull-left glyphicon glyphicon-remove dbitem-remove" ng-click="removeDbItem(item.objectId, $index)"/>
