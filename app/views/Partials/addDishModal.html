@@ -1,0 +1,19 @@
+<div dir="rtl">
+    <div class="modal-header">
+        <h1 class="modal-title">עברית שפה קשה</h1>
+        <h3>עזור לשייבה בבעיות השפה שלו</h3>
+    </div>
+    <div class="modal-body">
+        <h4>איזה מהמשפטים הבאים הכי נכון?</h4>
+        <div ng-repeat="word in suffixOptions">
+            <label style="font-size: 20px">
+                <input type="radio" ng-model="$parent.correctSuffix" ng-value="word" name="correct">
+                {{displayDish + ' ' + displayNation + word}} <br/>
+            </label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">בום</button>
+        <button class="btn btn-warning" ng-click="cancel()">עזוב אחי, כבד עלי עברית</button>
+    </div>
+</div>

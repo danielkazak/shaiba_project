@@ -60,7 +60,7 @@ angular.module('shaibaApp')
         var addNewDish = function(dishToAdd) {
 
             var addDishModalInstance = $modal.open({
-                templateUrl: 'views/partials/addDishModal.html',
+                templateUrl: 'views/Partials/addDishModal.html',
                 controller: 'AddDishModalCtrl',
                 resolve: {
                     dishName: function() {
