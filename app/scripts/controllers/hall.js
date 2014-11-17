@@ -13,64 +13,6 @@ angular.module('shaibaApp')
         $scope.bestSentences = {};
         $scope.max = 10;
 
-        function compare(a, b) {
-            if (a.grade > b.grade) {
-                return -1;
-            }
-            if (a.grade < b.grade) {
-                return 1;
-            }
-            return 0;
-        }
-
-        validateRatingFunctionality();
-
-        // This function is responsible to the progress that should happen after a user tries to rate a sentence
-        $scope.changeRating = function(index) {
-            var sentence = $scope.bestSentences[index];
-
-            if (sentence.isReadOnly) { return; }
-
-            sentence.color = "rated-pending";
-            var newGrade = (sentence.usersNumber * sentence.prevGrade + sentence.grade) / (sentence.usersNumber + 1);
-            sentence.grade = newGrade;
-            sentence.usersNumber++;
-            sentence.isReadOnly = true;
-            sentence.usersVoted.push(Facebook.getUserId());
-            $scope.bestSentences.sort(compare);
-
-            var data = {
-                grade: sentence.grade,
-                usersNumber: sentence.usersNumber,
-                "usersVoted":{"__op":"AddUnique","objects":[Facebook.getUserId()]}};
-
-            parse.putToParse('best', sentence.objectId, data).
-                then(function(response) {
-                    sentence.prevGrade = sentence.grade;
-                    sentence.color = 'rated-success';
-                    $timeout(function() {
-                        sentence.color = '';},
-                        3000);
-                }, function(response) {
-                    sentence.grade = sentence.prevGrade;
-                    sentence.usersNumber--;
-                    sentence.isReadOnly = false;
-
-                    var sentenceIndex = sentence.usersVoted.indexOf(Facebook.getUserId()); //IE 8,9 don't support indexOf
-                    if (sentenceIndex > -1) {
-                        sentence.usersVoted.splice(sentenceIndex, 1);
-                    }
-                    $scope.bestSentences.sort(compare);
-
-                    AppAlert.add(SharedData.appAlertTypes.DANGER, response, 5000);
-                    sentence.color = 'rated-failed';
-                    $timeout(function() {
-                            sentence.color = '';},
-                        5000);
-                });
-        }
-
-
         // Validating user rating options (whether voted already or not)
         function validateRatingFunctionality(){
             parse.getTable('best', false)
@@ -91,12 +33,68 @@ angular.module('shaibaApp')
                     }
                 },
                 function(result){
-                    console.log("Failed to get dish: " + result);
+                    console.log('Failed to get dish: ' + result);
                 });
         }
 
+        function compare(a, b) {
+            if (a.grade > b.grade) {
+                return -1;
+            }
+            if (a.grade < b.grade) {
+                return 1;
+            }
+            return 0;
+        }
+
+        validateRatingFunctionality();
+
+        // This function is responsible to the progress that should happen after a user tries to rate a sentence
+        $scope.changeRating = function(index) {
+            var sentence = $scope.bestSentences[index];
+
+            if (sentence.isReadOnly) { return; }
+
+            sentence.color = 'rated-pending';
+            sentence.grade = (sentence.usersNumber * sentence.prevGrade + sentence.grade) / (sentence.usersNumber + 1);
+            sentence.usersNumber++;
+            sentence.isReadOnly = true;
+            sentence.usersVoted.push(Facebook.getUserId());
+            $scope.bestSentences.sort(compare);
+
+            var data = {
+                grade: sentence.grade,
+                usersNumber: sentence.usersNumber,
+                'usersVoted':{'__op': 'AddUnique', 'objects': [Facebook.getUserId()]}};
+
+            parse.putToParse('best', sentence.objectId, data).
+                then(function() {
+                    sentence.prevGrade = sentence.grade;
+                    sentence.color = 'rated-success';
+                    $timeout(function() {
+                        sentence.color = '';},
+                        3000);
+                }, function(error) {
+                    sentence.grade = sentence.prevGrade;
+                    sentence.usersNumber--;
+                    sentence.isReadOnly = false;
+
+                    var sentenceIndex = sentence.usersVoted.indexOf(Facebook.getUserId()); //IE 8,9 don't support indexOf
+                    if (sentenceIndex > -1) {
+                        sentence.usersVoted.splice(sentenceIndex, 1);
+                    }
+                    $scope.bestSentences.sort(compare);
+
+                    AppAlert.add(SharedData.appAlertTypes.DANGER, error, 5000);
+                    sentence.color = 'rated-failed';
+                    $timeout(function() {
+                            sentence.color = '';},
+                        5000);
+                });
+        };
+
         // Watch if a user is logged in to run validation
-        $rootScope.$watch(function(rootScope) { return rootScope.isLoggedIn },
+        $rootScope.$watch(function(rootScope) { return rootScope.isLoggedIn; },
             function() {
                 validateRatingFunctionality();
             });

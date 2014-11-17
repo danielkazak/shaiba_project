@@ -7,13 +7,11 @@
  * # FavStar
  */
 angular.module('shaibaApp')
-  .directive('favStar', function ($rootScope) {
+  .directive('favStar', function () {
     return {
       template: '<span ng-click="addToHall()" class="{{ favStarCss }}" tooltip="הוסף להיכל התהילה" tooltip-trigger="mouseenter" tooltip-placement="right"/>',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-
+      link: function postLink() {
       }
     };
   });
-

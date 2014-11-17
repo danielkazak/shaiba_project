@@ -57,7 +57,7 @@ Settings.js
 
 1. DONE: (should add some hebrew\numbers\white spaces validations with regex) Valid word validation
 2. Word recognition (e.g.: Male/Female relation)
-    2.1 When adding a dish we should ask the user if it's male/female and if it's plural/single. We'd do it by adding 4
+    2.1 DONE: When adding a dish we  it's male/female should ask the user ifand if it's plural/single. We'd do it by adding 4
     options to the dish which represents one of the nations as male/female/plural/single, and let him choose what works
     the best.
     2.2 When adding a nation, we should tell the user that it suppose to represents one male dish, and add one male
@@ -70,7 +70,7 @@ Settings.js
 
 Admin
 -----
-1. Facebook service: validate isAdmin by boolean from the db.
+1. DONE: Facebook service: validate isAdmin by boolean from the db.
 2. Filter table contents
 3.
 

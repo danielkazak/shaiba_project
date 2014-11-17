@@ -13,7 +13,8 @@
         </div>
         <div class="dbsidebar">
         <ul class="nav nav-pills nav-stacked" ng-repeat="table in tables">
-            <li role="presedntation" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked($index)"><a href="" ng-click="selectTable(table.name)">{{table.name}}</a></li>
+            <li role="presedntation" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked($index)">
+                <a href="" ng-click="selectTable(table.name)">{{table.name}} ({{table.size}})</a></li>
         </ul>
         </div>
     </div>

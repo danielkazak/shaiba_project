@@ -28,19 +28,29 @@ angular.module('shaibaApp')
                 .then(function(data) {
                     $rootScope.favStarCss = 'glyphicon glyphicon-star favstar pull-left';
                     var newDish = data[0];
+                    var newNation = data[1];
+                    var newAdj = data[2];
                     var suffix = '';
-                    if (newDish.isPlural) {
-                        if (newDish.isMale) { suffix = 'ם'; }
-                        else { suffix = 'ות'; }
-                    } else if (!newDish.isMale) { suffix = 'ת'; }
+                    if (newNation.name[newNation.name.length-1] === 'י') {
+                        if (newDish.isPlural) {
+                            if (newDish.isMale) {
+                                suffix = 'ם';
+                            }
+                            else {
+                                suffix = 'ות';
+                            }
+                        } else if (!newDish.isMale) {
+                            suffix = 'ת';
+                        }
+                    }
                     $scope.dish = newDish.name;
-                    $scope.nation = data[1].name + suffix;
-                    $scope.adj = data[2].name;
+                    $scope.nation = newNation.name + suffix;
+                    $scope.adj = newAdj.name;
                     console.log(data);
                 }, function(result) {
-                    console.log("Failed to get one of them: " + result);
+                    console.log('Failed to get one of them: ' + result);
                 });
-        }
+        };
 
         $scope.addToHall = function(){
             if (!$rootScope.isLoggedIn) {
@@ -54,24 +64,24 @@ angular.module('shaibaApp')
                             if (best[i].name === checksentence) {
                                 exists = true;
                                 $rootScope.favStarCss = 'glyphicon glyphicon-star favstar-disabled pull-left';
-                                AppAlert.add(SharedData.appAlertTypes.WARNING, 'המשפט כבר חוגג בהיכל התהילה, נשמה, נסה שוב')
+                                AppAlert.add(SharedData.appAlertTypes.WARNING, 'המשפט כבר חוגג בהיכל התהילה, נשמה, נסה שוב');
                             }
                         }
                         if (!exists) {
                                 parse.postToParse('best', {
-                                    name: $scope.dish
-                                        + ' ' + $scope.nation
-                                        + ' ' + $scope.adj,
+                                    name: $scope.dish +
+                                        ' ' + $scope.nation +
+                                        ' ' + $scope.adj,
                                     grade: 4,
                                     usersNumber: 1,
                                     user: Facebook.userDetails.userId,
-                                    usersVoted: {"__op": "AddUnique", "objects": [Facebook.userDetails.userId]}
-                                }).then(function (success) {
+                                    usersVoted: {'__op': 'AddUnique', 'objects': [Facebook.userDetails.userId]}
+                                }).then(function() {
                                         $rootScope.favStarCss = 'glyphicon glyphicon-star favstar-disabled pull-left';
                                         parse.getTable('best', true);
                                     },
-                                    function (error) {
-                                        AppAlert.add(SharedData.appAlertTypes.DANGER, 'התרחשה בעיה בשרת')
+                                    function() {
+                                        AppAlert.add(SharedData.appAlertTypes.DANGER, 'התרחשה בעיה בשרת');
                                     }
                                 );
                                 AppAlert.add(SharedData.appAlertTypes.SUCCESS, 'המשפט התווסף להיכל התהילה', 4000);
@@ -83,5 +93,5 @@ angular.module('shaibaApp')
             } else {
                 AppAlert.add(SharedData.appAlertTypes.WARNING, 'שייבה לא אמר כלום יא פלופ! טיפ: לחץ על הראש.', 4000);
             }
-        }
+        };
     });

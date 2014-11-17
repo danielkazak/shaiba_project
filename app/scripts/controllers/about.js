@@ -15,7 +15,7 @@ angular.module('shaibaApp')
         $scope.nations = 'nations';
         $scope.adj = 'adj';
 
-        var addNew = function(parseTable, parseVal) {
+      /*  var addNew = function(parseTable, parseVal) {
             var data = {name: parseVal};
             parse.postToParse(parseTable, data)
                 .then(function (response) {
@@ -24,10 +24,10 @@ angular.module('shaibaApp')
                     AppAlert.add(SharedData.appAlertTypes.SUCCESS, parseVal + SharedData.validationStates.VALID, 4000);
                 },
                 function (error) {
-                    console.log("ERROR: " + error);
+                    console.log('ERROR: ' + error);
                     AppAlert.add(SharedData.appAlertTypes.DANGER, parseVal + 'לא התווסף, שגיאה:' + error);
                 });
-        }
+        };*/
 
         var checkValidation = function(tableName, value) {
             var deferred = $q.defer();
@@ -55,12 +55,12 @@ angular.module('shaibaApp')
                 });
 
             return deferred.promise;
-        }
+        };
 
         var addNewDish = function(dishToAdd) {
 
             var addDishModalInstance = $modal.open({
-                templateUrl: 'addDishModal.html',
+                templateUrl: 'views/Partials/addDishModal.html',
                 controller: 'AddDishModalCtrl',
                 resolve: {
                     dishName: function() {
@@ -74,13 +74,12 @@ angular.module('shaibaApp')
                 var isDishPlural;
                 switch(suffix) {
                     case SharedData.suffixOptions.SINGLE_MALE:
-                    default:
                         isDishMale = true;
                         isDishPlural = false;
                         break;
                     case SharedData.suffixOptions.PLURAL_MALE:
                         isDishMale = true;
-                        isDishPlural = false;
+                        isDishPlural = true;
                         break;
                     case SharedData.suffixOptions.SINGLE_FEMALE:
                         isDishMale = false;
@@ -89,6 +88,9 @@ angular.module('shaibaApp')
                     case SharedData.suffixOptions.PLURAL_FEMALE:
                         isDishMale = false;
                         isDishPlural = true;
+                        break;
+                    default:
+                        break;
                 }
                 var data = {name: dishToAdd, isMale: isDishMale, isPlural: isDishPlural};
                 parse.postToParse('dishes', data)
@@ -98,14 +100,14 @@ angular.module('shaibaApp')
                         AppAlert.add(SharedData.appAlertTypes.SUCCESS,
                                 dishToAdd + SharedData.validationStates.VALID, 4000);
                     }, function(error) {
-                        console.log("ERROR: " + error);
+                        console.log('ERROR: ' + error);
                         AppAlert.add(SharedData.appAlertTypes.DANGER,
                                 dishToAdd + 'לא התווסף, שגיאה:' + error);
-                    })
+                    });
             }, function() {
                 console.log('Modal dismissed at: ' + new Date());
             });
-        }
+        };
 
         var addNewAdj = function(adjToAdd) {
             var data = {name: adjToAdd};
@@ -115,10 +117,10 @@ angular.module('shaibaApp')
                     console.log(response);
                     AppAlert.add(SharedData.appAlertTypes.SUCCESS, adjToAdd + SharedData.validationStates.VALID, 4000);
                 }, function (error) {
-                    console.log("ERROR: " + error);
+                    console.log('ERROR: ' + error);
                     AppAlert.add(SharedData.appAlertTypes.DANGER, adjToAdd + 'לא התווסף, שגיאה:' + error);
                 });
-        }
+        };
 
         var addNewNation = function(nationToAdd) {
             var data = {name: nationToAdd};
@@ -128,10 +130,10 @@ angular.module('shaibaApp')
                     console.log(response);
                     AppAlert.add(SharedData.appAlertTypes.SUCCESS, nationToAdd + SharedData.validationStates.VALID, 4000);
                 }, function (error) {
-                    console.log("ERROR: " + error);
+                    console.log('ERROR: ' + error);
                     AppAlert.add(SharedData.appAlertTypes.DANGER, nationToAdd + 'לא התווסף, שגיאה:' + error);
                 });
-        }
+        };
 
         $scope.postData = function(parseTable, parseVal) {
             checkValidation(parseTable, parseVal)
@@ -150,7 +152,7 @@ angular.module('shaibaApp')
                 }, function(error) {
                     AppAlert.add(SharedData.appAlertTypes.DANGER, 'אנא נסה שוב, נוצרה שגיאה: ' + error);
                 });
-        }
+        };
 
   }).controller('AddDishModalCtrl', function($scope, $modalInstance, dishName, parse, SharedData) {
         $scope.displayDish = dishName;
@@ -170,9 +172,9 @@ angular.module('shaibaApp')
 
         $scope.ok = function() {
             $modalInstance.close($scope.correctSuffix);
-        }
+        };
 
         $scope.cancel = function() {
             $modalInstance.dismiss('cancel');
-        }
+        };
     });
