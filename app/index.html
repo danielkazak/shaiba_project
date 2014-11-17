@@ -31,10 +31,11 @@
       <div class="header">
           <div >
 
-              <img ng-show="showFbLogin" src="images/fblogin.png" ng-click="loginFacebook()" class="fbbutton"/>
+
           </div>
            <div>
                <ul class="nav nav-pills pull-left">
+               <img ng-show="showFbLogin" src="images/fblogin.png" ng-click="loginFacebook()" class="fbbutton"/>
                <li><a ng-href="#/admin" ng-show="isAdmin"><span class="glyphicon glyphicon-cog nav-admin"/></a></li>
                <li><h5 class="fbwelcome" ng-show="isLoggedIn" class="text-muted">{{ welcomeMsg }}</h5></li>
                </ul>

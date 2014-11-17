@@ -1,5 +1,6 @@
 <div class="jumbotron white-color">
     <div class="">
+        <input type="text" ng-model="$parent.filterText.$" tooltip="רשמו מנה, לאום או סתם מילה" tooltip-trigger="focus" tooltip-placement="top"/>
         <table class="table" dir="RTL" cellpadding="6" cellspacing="0" style="margin:1em auto;">
             <thead>
                 <tr>
@@ -9,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="sentence in bestSentences" class={{sentence.color}}>
+                <tr ng-repeat="sentence in bestSentences | filter:filterText" class={{sentence.color}}>
                     <td>{{$index+1}}</td>
                     <td>{{sentence.name}}</td>
                     <td><rating ng-model="sentence.grade" max="max" readonly="sentence.isReadOnly" ng-click="changeRating($index)" class="rating"></rating></td>

@@ -36,7 +36,8 @@ angular
       })
         .when('/admin', {
             templateUrl: 'views/admin.html',
-            controller: 'AdminCtrl'
+            controller: 'AdminCtrl',
+            auth: true
         })
       .otherwise({
         redirectTo: '/'
@@ -45,7 +46,9 @@ angular
     .config( function( $facebookProvider ) {
         $facebookProvider.setAppId(1508138392784272);
     })
-    .run( function() {
+    .run( function($location, $rootScope, $route) {
+        $rootScope.adminHitsCount = 0;
+
         // Cut and paste the "Load the SDK" code from the facebook javascript sdk page.
 
         // Load the facebook SDK asynchronously
@@ -69,5 +72,23 @@ angular
 
         }());
     })
+    .run(function($route, $location, $rootScope, $log, $modal){
+
+        $rootScope.$on('$locationChangeStart', function(ev, next, current) {
+            var nextPath = $location.path(),
+                nextRoute = $route.routes[nextPath];
+            $log.info(nextRoute);
+            if (!$rootScope.isAdmin && $rootScope.adminHitsCount > 2) {
+                $modal.open({
+                    templateUrl: 'views/Partials/idareyouModal.html'
+                });
+            }
+            if (nextRoute && nextRoute.auth && !$rootScope.isLoggedIn && !$rootScope.isAdmin) {
+                $location.path("#/");
+                $rootScope.adminHitsCount++;
+                console.log($rootScope.adminHitsCount);
+            }
+        });
+    });
 
 ;

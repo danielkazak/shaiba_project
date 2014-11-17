@@ -93,9 +93,10 @@ body {
 }
 
 .fbbutton {
+    margin-top: 3px;
     cursor: pointer;
-    height: 19%;
-    width: 19%;
+    height: 35%;
+    width: 35%;
 }
 
 .favstar {
