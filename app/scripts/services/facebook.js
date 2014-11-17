@@ -8,7 +8,7 @@
  * Factory in the shaibaApp.
  */
 angular.module('shaibaApp')
-  .factory('Facebook', function ($facebook, $q, $rootScope, ngProgress, parse, SharedData) {
+  .factory('Facebook', function ($facebook, $q, $rootScope, ngProgress, parse, SharedData, AppAlert) {
     // Service logic
     // ...
         $rootScope.isLoggedIn = false;
@@ -86,6 +86,7 @@ angular.module('shaibaApp')
                                    parse.postToParse('users', {fbId: response.id, fbUserName: response.name,
                                        fbEmail: response.email, isAdmin: false});
                                    console.log('New user!!' + response.id);
+                                   AppAlert.add(SharedData.appAlertTypes.INFO, 'אני רואה שזאת פעם ראשונה שלך. ברוך הבא צעירו!');
                                }
                            });
                     });
