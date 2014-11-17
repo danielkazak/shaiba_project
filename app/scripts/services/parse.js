@@ -98,7 +98,7 @@ angular.module('shaibaApp')
                 return deferred.promise;
             };
 
-            self.removeFromParse = function(table, data){
+            self.removeFromParse = function(table, data) {
                 var deferred = $q.defer();
                 $http.delete('https://api.parse.com/1/classes/' + table + '/' + data).
                     success(function() {
@@ -107,6 +107,28 @@ angular.module('shaibaApp')
                     error(function() {
                         deferred.reject(SharedData.parseResponse.FAILED);
                     });
+                return deferred.promise;
+            };
+
+            self.getTableSize = function(tableName) {
+                var deferred = $q.defer();
+
+                if (self[tableName] !== null) {
+                    deferred.resolve(self[tableName].length);
+                } else {
+                    ngProgress.start();
+                    $http.get('https://api.parse.com/1/classes/' + tableName)
+                        .success(function(response) {
+                            console.log(response.results);
+                            self[tableName] = response.results;
+                            deferred.resolve(response.results.length);
+                            ngProgress.complete();
+                        })
+                        .error(function(response) {
+                            deferred.reject(response);
+                            ngProgress.complete();
+                        });
+                }
                 return deferred.promise;
             };
 

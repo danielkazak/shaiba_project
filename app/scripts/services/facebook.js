@@ -8,7 +8,7 @@
  * Factory in the shaibaApp.
  */
 angular.module('shaibaApp')
-  .factory('Facebook', function ($facebook, $q, $rootScope, ngProgress, parse) {
+  .factory('Facebook', function ($facebook, $q, $rootScope, ngProgress, parse, SharedData) {
     // Service logic
     // ...
         $rootScope.isLoggedIn = false;
@@ -45,7 +45,7 @@ angular.module('shaibaApp')
                     facebookService.userDetails.userName = response.name;
                     facebookService.userDetails.userEmail = response.email;
                     facebookService.userDetails.userId = response.id;
-                    if (response.name === 'Daniel Kazak' || response.name === 'Doron Sages'){
+                    if($rootScope.admins.indexOf(response.id) >= 0) {
                         $rootScope.isAdmin = true;
                     }
                     $rootScope.showFbLogin = false;
@@ -83,7 +83,8 @@ angular.module('shaibaApp')
                                    }
                                });
                                if (!boolean){
-                                   parse.postToParse('users', {fbId: response.id, fbUserName: response.name, fbEmail: response.email});
+                                   parse.postToParse('users', {fbId: response.id, fbUserName: response.name,
+                                       fbEmail: response.email, isAdmin: false});
                                    console.log('New user!!' + response.id);
                                }
                            });

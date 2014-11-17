@@ -10,12 +10,23 @@
 angular.module('shaibaApp')
   .controller('IndexCtrl', function ($scope, Facebook, Title, AppAlert, parse, $rootScope) {
         $scope.Title = Title;
+        $rootScope.admins = [];
 
         parse.getTable('dishes');
         parse.getTable('nations');
         parse.getTable('adj');
         parse.getTable('best');
-        parse.getTable('users');
+        parse.getTable('users')
+            .then(function(users) {
+                angular.forEach(users, function(user) {
+                    if(user.isAdmin) {
+                        $rootScope.admins.push(user.fbId);
+                    }
+                });
+                Facebook.refresh();
+            }, function() {
+                Facebook.refresh();
+            });
 
         $scope.menuItems = {
           home: {href: '#/', class: 'glyphicon glyphicon-home nav-custom'},
@@ -24,8 +35,6 @@ angular.module('shaibaApp')
         };
 
         $rootScope.favStarCss = 'glyphicon glyphicon-star favstar pull-left';
-
-        Facebook.refresh();
 
         $scope.loginFacebook = function(){
          Facebook.login();
