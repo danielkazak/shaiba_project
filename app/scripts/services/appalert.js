@@ -14,7 +14,7 @@ angular.module('shaibaApp')
         var alertService = {
             add: function(type, msg, timeout){
                 $rootScope.alerts.push({type: type, msg: msg, close:
-                    function(){alertService.closeAlert(this)}
+                    function(){alertService.closeAlert(this);}
                 });
 
                 if (timeout) {
@@ -29,7 +29,6 @@ angular.module('shaibaApp')
             closeAlertIdx: function(index){
                return $rootScope.alerts.splice(index, 1);
             }
-
         };
       return alertService;
   }]);

@@ -11,7 +11,7 @@ angular.module('shaibaApp')
     return {
       template: '<div></div>',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
         element.text('this is the aboutDir directive');
       }
     };

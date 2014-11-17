@@ -29,7 +29,7 @@ angular.module('shaibaApp')
 
         $scope.loginFacebook = function(){
          Facebook.login();
-        }
+        };
 
         $scope.Title = Title;
 
@@ -37,7 +37,7 @@ angular.module('shaibaApp')
 
         $scope.itemClicked = function ($index) {
             $scope.selectedIndex = $index;
-        }
+        };
 
 
     });

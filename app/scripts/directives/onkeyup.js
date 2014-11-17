@@ -18,7 +18,7 @@ angular.module('shaibaApp')
                 //$apply makes sure that angular knows
                 //we're changing something
                 angular.forEach(params[1], function(key) {
-                    if (key == evt.which){
+                    if (key === evt.which){
                         scope.$apply(function() {
                             params[0].call(scope, params[2], elm.val());
                             elm.val('');

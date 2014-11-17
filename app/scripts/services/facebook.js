@@ -25,22 +25,23 @@ angular.module('shaibaApp')
             userId: ''
         },
 
-        // Test facebook connection
+/*        // Test facebook connection
         testFacebook: function() {
-            $facebook.api("/me").then(
+            $facebook.api('/me').then(
                 function (response) {
-                    console.log("Welcome " + response.name);
+                    console.log('Welcome ' + response.name);
                 },
-                function (err) {
-                    console.log("Please log in");
+                function () {
+                    console.log('Please log in');
                 });
-        },
+        },*/
+
         refresh: function() {
             var deferred = $q.defer();
             ngProgress.start();
-            $facebook.api("/me").then(
+            $facebook.api('/me').then(
                 function(response) {
-                    $rootScope.welcomeMsg = "Welcome " + response.name;
+                    $rootScope.welcomeMsg = 'Welcome ' + response.name;
                     facebookService.userDetails.userName = response.name;
                     facebookService.userDetails.userEmail = response.email;
                     facebookService.userDetails.userId = response.id;
@@ -52,8 +53,8 @@ angular.module('shaibaApp')
                     ngProgress.complete();
                     deferred.resolve(response);
                 },
-                function(err) {
-                    $rootScope.welcomeMsg = "Please log in";
+                function() {
+                    $rootScope.welcomeMsg = 'Please log in';
                     $rootScope.showFbLogin = true;
                     ngProgress.complete();
                     deferred.reject(null);

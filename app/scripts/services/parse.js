@@ -12,11 +12,11 @@ angular.module('shaibaApp')
         // Service logic
         // ...
         // Initialize headers for Shaiba_Generator at parse.com
-        $http.defaults.headers.common["X-Parse-Application-Id"] = "SyCWUj76oNwCrRpfvO2B5gdkm9uKvMkHNyEjZwCJ";
-        $http.defaults.headers.common["X-Parse-REST-API-Key"] = "ykKXzomRdgxjdWPjPnhqcLFD7OmxAZbavzYOpIwr";
+        $http.defaults.headers.common['X-Parse-Application-Id'] = 'SyCWUj76oNwCrRpfvO2B5gdkm9uKvMkHNyEjZwCJ';
+        $http.defaults.headers.common['X-Parse-REST-API-Key'] = 'ykKXzomRdgxjdWPjPnhqcLFD7OmxAZbavzYOpIwr';
 
         // Random function
-        function Random(num){
+        function getRandomNumber(num){
             return Math.floor(Math.random() * num);
         }
 
@@ -40,49 +40,48 @@ angular.module('shaibaApp')
                 } else {
                     ngProgress.start();
                     $http.get('https://api.parse.com/1/classes/' + tableName)
-                        .success(function (response) {
+                        .success(function(response) {
                             console.log(response.results);
                             self[tableName] = response.results;
                             deferred.resolve(response.results);
                             ngProgress.complete();
                         })
-                        .error(function (response) {
+                        .error(function(response) {
                             deferred.reject(response);
                             ngProgress.complete();
                         });
                 }
-
                 return deferred.promise;
-            }
+            };
 
             self.getRandom = function(tableName) {
                 var deferred = $q.defer();
 
                 self.getTable(tableName, false)
                     .then(
-                    function (response) {
-                        deferred.resolve(response[Random(response.length)]);
+                    function(response) {
+                        deferred.resolve(response[getRandomNumber(response.length)]);
                     },
-                    function (response) {
+                    function(response) {
                         deferred.reject(response);
                     });
 
                 return deferred.promise;
-            }
+            };
 
             self.postToParse = function(table, rowData) {
                 var deferred = $q.defer();
                 ngProgress.start();
                 $http.post('https://api.parse.com/1/classes/' + table, rowData).
-                    success(function(data, status, headers, config) {
+                    success(function() {
                         // this callback will be called asynchronously
                         ngProgress.complete();
-                        deferred.resolve(JSON.stringify(rowData) + " posted to " + table);
+                        deferred.resolve(JSON.stringify(rowData) + ' posted to ' + table);
                     }).
-                    error(function(data, status, headers, config) {
+                    error(function(data, status) {
                         // called asynchronously if an error occurs
                         ngProgress.complete();
-                        deferred.reject(data.name + " wasnt posted. Reason: " + status);
+                        deferred.reject(data.name + ' wasn\'t posted. Reason: ' + status);
                     });
                 return deferred.promise;
             };
@@ -90,12 +89,10 @@ angular.module('shaibaApp')
             self.putToParse = function(table, column, data) {
                 var deferred = $q.defer();
                 $http.put('https://api.parse.com/1/classes/' + table + '/' + column, data).
-                    success(function(data, status, headers, config) {
-                        // this callback will be called asynchronously
+                    success(function() {
                         deferred.resolve(SharedData.parseResponse.SUCCESS);
                     }).
-                    error(function(data, status, headers, config) {
-                        // called asynchronously if an error occurs
+                    error(function() {
                         deferred.reject(SharedData.parseResponse.FAILED);
                     });
                 return deferred.promise;
@@ -104,16 +101,14 @@ angular.module('shaibaApp')
             self.removeFromParse = function(table, data){
                 var deferred = $q.defer();
                 $http.delete('https://api.parse.com/1/classes/' + table + '/' + data).
-                    success(function(data, status, headers, config) {
-                        // this callback will be called asynchronously
+                    success(function() {
                         deferred.resolve(SharedData.parseResponse.SUCCESS);
                     }).
-                    error(function(data, status, headers, config) {
-                        // called asynchronously if an error occurs
+                    error(function() {
                         deferred.reject(SharedData.parseResponse.FAILED);
                     });
                 return deferred.promise;
-            }
+            };
 
         }
         return new Parse();

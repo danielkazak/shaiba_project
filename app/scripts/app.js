@@ -45,7 +45,7 @@ angular
     .config( function( $facebookProvider ) {
         $facebookProvider.setAppId(1508138392784272);
     })
-    .run( function( $rootScope ) {
+    .run( function() {
         // Cut and paste the "Load the SDK" code from the facebook javascript sdk page.
 
         // Load the facebook SDK asynchronously
