@@ -8,7 +8,9 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('IndexCtrl', function ($scope, Facebook, Title, AppAlert, parse, ngProgress) {
+  .controller('IndexCtrl', function ($scope, Facebook, Title, AppAlert, parse, $rootScope) {
+        $scope.Title = Title;
+
         parse.getTable('dishes');
         parse.getTable('nations');
         parse.getTable('adj');
@@ -20,6 +22,8 @@ angular.module('shaibaApp')
           about: {href: '#/about', class: 'glyphicon glyphicon-pencil nav-custom'},
           hall: {href: '#/halloffame', class: 'glyphicon glyphicon-star nav-custom'}
         };
+
+        $rootScope.favStarCss = 'glyphicon glyphicon-star favstar pull-left';
 
         Facebook.refresh();
 

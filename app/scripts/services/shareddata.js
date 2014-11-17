@@ -24,10 +24,16 @@ angular.module('shaibaApp')
 
         appAlertTypes: {SUCCESS: 'success',
                         WARNING: 'warning',
-                        DANGER: 'danger'},
+                        DANGER: 'danger',
+                        INFO: 'info'},
 
         siteTitles: {MAIN: 'מחולל שייבה',
                     SETTINGS: 'הגדרות',
-                    HALL: 'היכל התהילה'}
+                    HALL: 'היכל התהילה'},
+
+        suffixOptions: {SINGLE_MALE: '',
+                        PLURAL_MALE: 'ם',
+                        SINGLE_FEMALE: 'ת',
+                        PLURAL_FEMALE: 'ות'}
     };
   });

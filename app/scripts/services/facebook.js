@@ -15,7 +15,6 @@ angular.module('shaibaApp')
         $rootScope.isAdmin = false;
         $rootScope.fbUserName = null;
         $rootScope.showFbLogin = false;
-        $rootScope.favStarCss = 'glyphicon glyphicon-star favstar-disabled pull-left';
 
     var facebookService = {
 
@@ -50,13 +49,11 @@ angular.module('shaibaApp')
                     }
                     $rootScope.showFbLogin = false;
                     $rootScope.isLoggedIn = true;
-                    $rootScope.favStarCss = 'glyphicon glyphicon-star favstar pull-left';
                     ngProgress.complete();
                     deferred.resolve(response);
                 },
                 function(err) {
                     $rootScope.welcomeMsg = "Please log in";
-                    $rootScope.favStarCss = 'glyphicon glyphicon-star favstar-disabled pull-left';
                     $rootScope.showFbLogin = true;
                     ngProgress.complete();
                     deferred.reject(null);
@@ -85,7 +82,7 @@ angular.module('shaibaApp')
                                    }
                                });
                                if (!boolean){
-                                   parse.postToparse('users', {fbId: response.id, fbUserName: response.name, fbEmail: response.email});
+                                   parse.postToParse('users', {fbId: response.id, fbUserName: response.name, fbEmail: response.email});
                                    console.log('New user!!' + response.id);
                                }
                            });

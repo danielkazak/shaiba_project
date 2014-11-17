@@ -8,7 +8,7 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title, AppAlert, SharedData) {
+  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title, AppAlert, SharedData, $timeout) {
         Title.setTitle(SharedData.siteTitles.HALL);
         $scope.bestSentences = {};
         $scope.max = 10;
@@ -47,7 +47,10 @@ angular.module('shaibaApp')
             parse.putToParse('best', sentence.objectId, data).
                 then(function(response) {
                     sentence.prevGrade = sentence.grade;
-                    sentence.color = "rated-success";
+                    sentence.color = 'rated-success';
+                    $timeout(function() {
+                        sentence.color = '';},
+                        3000);
                 }, function(response) {
                     sentence.grade = sentence.prevGrade;
                     sentence.usersNumber--;
@@ -60,7 +63,10 @@ angular.module('shaibaApp')
                     $scope.bestSentences.sort(compare);
 
                     AppAlert.add(SharedData.appAlertTypes.DANGER, response, 5000);
-                    sentence.color = "rated-failed";
+                    sentence.color = 'rated-failed';
+                    $timeout(function() {
+                            sentence.color = '';},
+                        5000);
                 });
         }
 

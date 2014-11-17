@@ -1,3 +1,25 @@
+<script type="text/ng-template" id="addDishModal.html">
+    <div dir="rtl">
+        <div class="modal-header">
+            <h3 class="modal-title">עברית שפה קשה</h3>
+            <h5>עזור לשייבה בבעיות השפה שלו</h5>
+        </div>
+        <div class="modal-body">
+            <h5>איזה מהמשפטים הבאים הכי נכון?</h5>
+            <div ng-repeat="word in suffixOptions">
+                <label>
+                    <input type="radio" ng-model="$parent.correctSuffix" ng-value="word" name="correct">
+                    {{displayDish + ' ' + displayNation + word}} <br/>
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">בום</button>
+            <button class="btn btn-warning" ng-click="cancel()">עזוב אחי, כבד עלי עברית</button>
+        </div>
+    </div>
+</script>
+
 <div class="jumbotron white-color">
     <h3>!עיזרו לשייבה להיזכר</h3>
     <div class="focusguard" id="focusguard-1" tabindex="0"><br></div>

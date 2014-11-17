@@ -61,7 +61,7 @@ angular.module('shaibaApp')
                 self.getTable(tableName, false)
                     .then(
                     function (response) {
-                        deferred.resolve(response[Random(response.length)].name);
+                        deferred.resolve(response[Random(response.length)]);
                     },
                     function (response) {
                         deferred.reject(response);
@@ -70,7 +70,7 @@ angular.module('shaibaApp')
                 return deferred.promise;
             }
 
-            self.postToparse = function(table, rowData) {
+            self.postToParse = function(table, rowData) {
                 var deferred = $q.defer();
                 ngProgress.start();
                 $http.post('https://api.parse.com/1/classes/' + table, rowData).

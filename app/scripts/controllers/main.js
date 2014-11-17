@@ -19,37 +19,33 @@ angular.module('shaibaApp')
         $scope.adj = '';
 
         $scope.getSentence = function(){
-            parse.getRandom('dishes')
-                .then(
-                function(dish) {
+
+            var dishPromise = parse.getRandom('dishes');
+            var nationPromise = parse.getRandom('nations');
+            var adjPromise = parse.getRandom('adj');
+
+            $q.all([dishPromise, nationPromise, adjPromise])
+                .then(function(data) {
                     $rootScope.favStarCss = 'glyphicon glyphicon-star favstar pull-left';
-                    $scope.dish = dish;
-                },
-                function(result){
-                    console.log("Failed to get dish: " + result);
-                });
-
-            parse.getRandom('nations')
-                .then(
-                function(nation){
-                    $scope.nation = nation;
-                },
-                function(result){
-                    console.log("Failed to get nation: " + result);
-                });
-
-            parse.getRandom('adj')
-                .then(
-                function(adj){
-                    $scope.adj = adj;
-                },
-                function(result){
-                    console.log("Failed to get nation: " + result);
+                    var newDish = data[0];
+                    var suffix = '';
+                    if (newDish.isPlural) {
+                        if (newDish.isMale) { suffix = 'ם'; }
+                        else { suffix = 'ות'; }
+                    } else if (!newDish.isMale) { suffix = 'ת'; }
+                    $scope.dish = newDish.name;
+                    $scope.nation = data[1].name + suffix;
+                    $scope.adj = data[2].name;
+                    console.log(data);
+                }, function(result) {
+                    console.log("Failed to get one of them: " + result);
                 });
         }
 
         $scope.addToHall = function(){
-            if($rootScope.isLoggedIn && $scope.nation !== '' && $scope.dish !== '' && $scope.adj !== '') {
+            if (!$rootScope.isLoggedIn) {
+                AppAlert.add(SharedData.appAlertTypes.WARNING, 'אהבת את המשפט? רוצה להצביע? יאללה תתחבר לפייסבוק נשמה.', 4000);
+            } else if ($scope.nation !== '' && $scope.dish !== '' && $scope.adj !== '') {
                 parse.getTable('best', false)
                     .then(function (best) {
                         var checksentence = $scope.dish + ' ' + $scope.nation + ' ' + $scope.adj;
@@ -62,7 +58,7 @@ angular.module('shaibaApp')
                             }
                         }
                         if (!exists) {
-                                parse.postToparse('best', {
+                                parse.postToParse('best', {
                                     name: $scope.dish
                                         + ' ' + $scope.nation
                                         + ' ' + $scope.adj,
