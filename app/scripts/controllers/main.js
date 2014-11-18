@@ -28,7 +28,7 @@ angular.module('shaibaApp')
                     var newDish = data[0];
                     var newNation = data[1];
                     var newAdj = data[2];
-                    var suffix;
+                    var suffix = '';
                     var adj = newAdj.name;
                     if (newNation.name[newNation.name.length-1] === 'י') {
                         if (newDish.isMale) {
