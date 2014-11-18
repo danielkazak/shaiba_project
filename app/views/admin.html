@@ -2,7 +2,7 @@
 
     <div class="dbwrapper">
         <div class="dbcontent">
-            <input type="text" ng-model="$parent.searchFilter.$" tooltip="Type name, id or fbId" tooltip-trigger="focus" tooltip-placement="top"/>
+            <input type="text" class="shaiba-input" ng-model="$parent.searchFilter.$" tooltip="Type name, id or fbId" tooltip-trigger="focus" tooltip-placement="top"/>
             <ul class="dbitem {{item.color}}" ng-repeat="item in tableContent | filter:searchFilter">
                 <span class="dbitem-content">
                     {{item.name}}{{item.fbUserName}}

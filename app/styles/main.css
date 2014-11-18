@@ -191,7 +191,7 @@ body {
     color: #FFC929;
 }
 
-.aboutinput{
+.shaiba-input{
     text-align: right;
     direction: RTL;
 
@@ -217,7 +217,7 @@ body {
     -o-transition: border 0.15s linear 0s, box-shadow 0.15s linear 0s, color 0.15s linear 0s;
 }
 
-.aboutinput:focus {
+.shaiba-input:focus {
     color: #333;
     border-color: rgba(41, 92, 161, 0.4);
 

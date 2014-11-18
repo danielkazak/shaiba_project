@@ -51,7 +51,7 @@ angular.module('shaibaApp')
         // Remove an item
         $scope.removeDbItem = function(itemId, index){
             if ($scope.selectedTable === 'users' && ($scope.tableContent[index].isAdmin)) {
-                AppAlert.add(SharedData.appAlertTypes.DANGER, 'אחי, תהיה קצת יותר אח. אתה לא יכול להעיף אדמין');
+                AppAlert.add(SharedData.appAlertTypes.DANGER, 'אחי, תהיה קצת יותר אח. אתה לא יכול להעיף אדמין', 3000);
                 return;
             }
             var item = $scope.tableContent[index];
