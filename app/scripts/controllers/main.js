@@ -11,8 +11,6 @@ angular.module('shaibaApp')
   .controller('MainCtrl', function ($scope, parse, $q, $timeout, Facebook, AppAlert, Title, $rootScope, SharedData) {
         Title.setTitle('מחולל שייבה');
 
-        /*AppAlert.add('info', 'לחצו על ראשו של שייבה', 5000);*/
-
         // $scope objects
         $scope.nation = '';
         $scope.dish = '';

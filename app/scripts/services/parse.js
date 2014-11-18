@@ -54,17 +54,21 @@ angular.module('shaibaApp')
                 return deferred.promise;
             };
 
-            self.getRandom = function(tableName) {
+            self.getRandom = function(table) {
                 var deferred = $q.defer();
 
-                self.getTable(tableName, false)
-                    .then(
-                    function(response) {
-                        deferred.resolve(response[getRandomNumber(response.length)]);
-                    },
-                    function(response) {
-                        deferred.reject(response);
-                    });
+                if(typeof table === 'string') {
+                    self.getTable(table, false)
+                        .then(
+                        function (response) {
+                            deferred.resolve(response[getRandomNumber(response.length)]);
+                        },
+                        function (response) {
+                            deferred.reject(response);
+                        });
+                } else {
+                    deferred.resolve(table[getRandomNumber(table.length)]);
+                }
 
                 return deferred.promise;
             };
@@ -131,6 +135,48 @@ angular.module('shaibaApp')
                 }
                 return deferred.promise;
             };
+
+            self.getRandomDishes = function() {
+                var deferred = $q.defer();
+
+                var singleMaleDishes = ['סמבוסק'];
+                var pluralMaleDishes = ['זיתים'];
+                var singleFemaleDishes = ['פיצה'];
+                var pluralFemaleDishes = ['פטריות'];
+
+                self.getTable('dishes', false)
+                    .then(function(table) {
+                        for(var i = 0; i < table.length; i++) {
+                            if(table[i].isMale) {
+                                if(!table[i].isPlural) {
+                                    if(table[i].name !== 'סמבוסק') { singleMaleDishes.push(table[i].name); }
+                                } else {
+                                    if(table[i].name !== 'זיתים') { pluralMaleDishes.push(table[i].name); }
+                                }
+                            } else if(!table[i].isPlural) {
+                                if(table[i].name !== 'פיצה') { singleFemaleDishes.push(table[i].name); }
+                            } else {
+                                if(table[i].name !== 'פטריות') { pluralFemaleDishes.push(table[i].name); }
+                            }
+                        }
+
+                        var first = self.getRandom(singleMaleDishes);
+                        var second = self.getRandom(pluralMaleDishes);
+                        var third = self.getRandom(singleFemaleDishes);
+                        var forth = self.getRandom(pluralFemaleDishes);
+                        $q.all([first, second, third, forth])
+                            .then(function(data) {
+                                var randomDishes = [];
+                                randomDishes.push(data[0]);
+                                randomDishes.push(data[1]);
+                                randomDishes.push(data[2]);
+                                randomDishes.push(data[3]);
+                                deferred.resolve(randomDishes);
+                            });
+                    });
+
+                return deferred.promise;
+            }
 
         }
         return new Parse();

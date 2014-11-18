@@ -101,6 +101,7 @@ angular.module('shaibaApp')
 
         var addNewAdj = function(adjToAdd) {
             var addDishModalInstance = $modal.open({
+                size: 'lg',
                 templateUrl: 'views/Partials/AddAdjectiveModal.html',
                 controller: 'AddAdjectiveModalCtrl',
                 resolve: {
@@ -175,11 +176,15 @@ angular.module('shaibaApp')
             $modalInstance.dismiss('cancel');
         };
     }).controller('AddAdjectiveModalCtrl', function($scope, $modalInstance, adjName, parse, SharedData, AppAlert) {
-        $scope.displayAdjectives = [];
-        $scope.displayAdjectives.push({name: adjName, approved: false, dish: 'סמבוסק'});
-        $scope.displayAdjectives.push({name: adjName, approved: false, dish: 'זיתים'});
-        $scope.displayAdjectives.push({name: adjName, approved: false, dish: 'פיצה'});
-        $scope.displayAdjectives.push({name: adjName, approved: false, dish: 'פטריות'});
+        parse.getRandomDishes()
+            .then(function(data) {
+                $scope.displayAdjectives = [
+                    {name: adjName, approved: false, dish: data[0]},
+                    {name: adjName, approved: false, dish: data[1]},
+                    {name: adjName, approved: false, dish: data[2]},
+                    {name: adjName, approved: false, dish: data[3]}
+                ];
+            });
 
         $scope.ok = function() {
             var areApproved = true;
