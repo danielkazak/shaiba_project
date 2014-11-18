@@ -40,7 +40,7 @@
                <li><h5 class="fbwelcome" ng-show="isLoggedIn" class="text-muted">{{ welcomeMsg }}</h5></li>
                </ul>
                 <ul class="nav nav-pills pull-right" ng-repeat="item in menuItems">
-                    <li><a ng-href="{{item.href}}"><span class="{{item.class}}" ng-class="{ 'active': $index == selectedIndex }" ng-click="itemClicked($index)"/></a></li>
+                    <li><a ng-href="{{item.href}}"><span class="{{item.class}}" ng-class="{ 'active': $index == selectedIndex }" ng-click="item.openmodal"/></a></li>
                 </ul>
             </div>
       </div>
@@ -114,6 +114,8 @@
         <script src="scripts/directives/favstar.js"></script>
         <script src="scripts/services/shareddata.js"></script>
         <script src="scripts/controllers/admin.js"></script>
+        <script src="scripts/controllers/mobile.js"></script>
+        <script src="scripts/controllers/info.js"></script>
         <!-- endbuild -->
 </body>
 </html>
