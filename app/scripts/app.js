@@ -26,7 +26,7 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
+      .when('/add', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
@@ -38,6 +38,14 @@ angular
             templateUrl: 'views/admin.html',
             controller: 'AdminCtrl',
             auth: true
+        })
+        .when('/info', {
+            templateUrl: 'views/info.html',
+            controller: 'InfoCtrl'
+        })
+        .when('/mobileapp', {
+            templateUrl: 'views/partials/appCodeModal.html',
+            controller: 'MobileCtrl'
         })
       .otherwise({
         redirectTo: '/'
@@ -86,7 +94,6 @@ angular
             if (nextRoute && nextRoute.auth && !$rootScope.isAdmin) {
                 $location.path("#/");
                 $rootScope.adminHitsCount++;
-                console.log($rootScope.adminHitsCount);
             }
         });
     });
