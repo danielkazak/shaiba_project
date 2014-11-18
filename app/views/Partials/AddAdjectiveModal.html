@@ -5,13 +5,14 @@
     </div>
     <div class="modal-body">
         <h4>תתקן את המשפטים הלא נכונים, ובסוף סמן את כל המשפטים שאתה מאשר</h4>
-        <div ng-repeat="adjective in displayAdjectives">
-            <label style="font-size: 20px">
-                <input type="checkbox" ng-model="adjective.approved"> {{adjective.dish}} <input type="text" ng-model="adjective.name">
-            </label>
-        </div>
+        <ul ng-repeat="adjective in displayAdjectives" class="aboutinput" style="height: 50px;">
+            <span>
+                <input type="checkbox" class="" ng-model="adjective.approved"><label style="padding-right: 4px; margin-bottom: 41px;">{{adjective.dish}}</label></input>
+                <input type="text" class="input-noborders" style="margin-right: 30px;" ng-model="adjective.name"/>
+            </span>
+        </ul>
     </div>
-    <div class="modal-footer">
+    <div class="footer" style="padding: 20px;">
         <button class="btn btn-primary" ng-click="ok()">בום</button>
         <button class="btn btn-warning" ng-click="cancel()">עזוב אחי, כבד עלי עברית</button>
     </div>
