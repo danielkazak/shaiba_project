@@ -15,19 +15,19 @@ angular.module('shaibaApp')
         $scope.nations = 'nations';
         $scope.adj = 'adj';
 
-      /*  var addNew = function(parseTable, parseVal) {
-            var data = {name: parseVal};
+        var addNew = function(parseTable, data, name) {
             parse.postToParse(parseTable, data)
-                .then(function (response) {
+                .then(function(response) {
                     parse.getTable(parseTable, true);
                     console.log(response);
-                    AppAlert.add(SharedData.appAlertTypes.SUCCESS, parseVal + SharedData.validationStates.VALID, 4000);
-                },
-                function (error) {
+                    AppAlert.add(SharedData.appAlertTypes.SUCCESS,
+                            name + SharedData.validationStates.VALID, 4000);
+                }, function(error) {
                     console.log('ERROR: ' + error);
-                    AppAlert.add(SharedData.appAlertTypes.DANGER, parseVal + 'לא התווסף, שגיאה:' + error);
+                    AppAlert.add(SharedData.appAlertTypes.DANGER,
+                            name + 'לא התווסף, שגיאה:' + error);
                 });
-        };*/
+        };
 
         var checkValidation = function(tableName, value) {
             var deferred = $q.defer();
@@ -93,46 +93,43 @@ angular.module('shaibaApp')
                         break;
                 }
                 var data = {name: dishToAdd, isMale: isDishMale, isPlural: isDishPlural};
-                parse.postToParse('dishes', data)
-                    .then(function(response) {
-                        parse.getTable('dishes', true);
-                        console.log(response);
-                        AppAlert.add(SharedData.appAlertTypes.SUCCESS,
-                                dishToAdd + SharedData.validationStates.VALID, 4000);
-                    }, function(error) {
-                        console.log('ERROR: ' + error);
-                        AppAlert.add(SharedData.appAlertTypes.DANGER,
-                                dishToAdd + 'לא התווסף, שגיאה:' + error);
-                    });
+                addNew('dishes', data, dishToAdd);
             }, function() {
                 console.log('Modal dismissed at: ' + new Date());
             });
         };
 
         var addNewAdj = function(adjToAdd) {
-            var data = {name: adjToAdd};
-            parse.postToParse('adj', data)
-                .then(function (response) {
-                    parse.getTable('adj', true);
-                    console.log(response);
-                    AppAlert.add(SharedData.appAlertTypes.SUCCESS, adjToAdd + SharedData.validationStates.VALID, 4000);
-                }, function (error) {
-                    console.log('ERROR: ' + error);
-                    AppAlert.add(SharedData.appAlertTypes.DANGER, adjToAdd + 'לא התווסף, שגיאה:' + error);
-                });
+            var addDishModalInstance = $modal.open({
+                templateUrl: 'views/Partials/AddAdjectiveModal.html',
+                controller: 'AddAdjectiveModalCtrl',
+                resolve: {
+                    adjName: function() {
+                        return adjToAdd;
+                    }
+                }
+            });
+
+            addDishModalInstance.result.then(function(versions) {
+                var data = {name: adjToAdd};
+                if((versions[SharedData.hebrewOptionsEnum.SINGLE_MALE] === versions[SharedData.hebrewOptionsEnum.PLURAL_MALE]) &&
+                    (versions[SharedData.hebrewOptionsEnum.SINGLE_MALE] === versions[SharedData.hebrewOptionsEnum.SINGLE_FEMALE]) &&
+                    (versions[SharedData.hebrewOptionsEnum.SINGLE_MALE] === versions[SharedData.hebrewOptionsEnum.PLURAL_FEMALE])) {
+                    data.isSame = true;
+                    data.versions = {};
+                } else {
+                    data.isSame = false;
+                    data.versions = versions;
+                }
+                addNew('adj', data, adjToAdd);
+            }, function() {
+                console.log('Modal dismissed at: ' + new Date());
+            });
         };
 
         var addNewNation = function(nationToAdd) {
             var data = {name: nationToAdd};
-            parse.postToParse('nations', data)
-                .then(function (response) {
-                    parse.getTable('nations', true);
-                    console.log(response);
-                    AppAlert.add(SharedData.appAlertTypes.SUCCESS, nationToAdd + SharedData.validationStates.VALID, 4000);
-                }, function (error) {
-                    console.log('ERROR: ' + error);
-                    AppAlert.add(SharedData.appAlertTypes.DANGER, nationToAdd + 'לא התווסף, שגיאה:' + error);
-                });
+            addNew('nations', data, nationToAdd);
         };
 
         $scope.postData = function(parseTable, parseVal) {
@@ -172,6 +169,35 @@ angular.module('shaibaApp')
 
         $scope.ok = function() {
             $modalInstance.close($scope.correctSuffix);
+        };
+
+        $scope.cancel = function() {
+            $modalInstance.dismiss('cancel');
+        };
+    }).controller('AddAdjectiveModalCtrl', function($scope, $modalInstance, adjName, parse, SharedData, AppAlert) {
+        $scope.displayAdjectives = [];
+        $scope.displayAdjectives.push({name: adjName, approved: false, dish: 'סמבוסק'});
+        $scope.displayAdjectives.push({name: adjName, approved: false, dish: 'זיתים'});
+        $scope.displayAdjectives.push({name: adjName, approved: false, dish: 'פיצה'});
+        $scope.displayAdjectives.push({name: adjName, approved: false, dish: 'פטריות'});
+
+        $scope.ok = function() {
+            var areApproved = true;
+            for(var i = 0; i < $scope.displayAdjectives.length && areApproved; i++) {
+                if(!$scope.displayAdjectives[i].approved) {
+                    areApproved = false;
+                }
+            }
+            if(areApproved) {
+                var toSend = {};
+                toSend[SharedData.hebrewOptionsEnum.SINGLE_MALE] = $scope.displayAdjectives[SharedData.hebrewOptionsEnum.SINGLE_MALE].name;
+                toSend[SharedData.hebrewOptionsEnum.PLURAL_MALE] = $scope.displayAdjectives[SharedData.hebrewOptionsEnum.PLURAL_MALE].name;
+                toSend[SharedData.hebrewOptionsEnum.SINGLE_FEMALE] = $scope.displayAdjectives[SharedData.hebrewOptionsEnum.SINGLE_FEMALE].name;
+                toSend[SharedData.hebrewOptionsEnum.PLURAL_FEMALE] = $scope.displayAdjectives[SharedData.hebrewOptionsEnum.PLURAL_FEMALE].name;
+                $modalInstance.close(toSend);
+            } else {
+                AppAlert.add(SharedData.appAlertTypes.DANGER, 'תאשר קודם את כל המשפטים יא חנון');
+            }
         };
 
         $scope.cancel = function() {

@@ -41,7 +41,7 @@ angular.module('shaibaApp')
                     ngProgress.start();
                     $http.get('https://api.parse.com/1/classes/' + tableName)
                         .success(function(response) {
-                            console.log(response.results);
+                            //console.log(response.results);
                             self[tableName] = response.results;
                             deferred.resolve(response.results);
                             ngProgress.complete();

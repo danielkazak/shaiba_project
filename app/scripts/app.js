@@ -83,7 +83,7 @@ angular
                     templateUrl: 'views/Partials/idareyouModal.html'
                 });
             }
-            if (nextRoute && nextRoute.auth && !$rootScope.isLoggedIn && !$rootScope.isAdmin) {
+            if (nextRoute && nextRoute.auth && !$rootScope.isAdmin) {
                 $location.path("#/");
                 $rootScope.adminHitsCount++;
                 console.log($rootScope.adminHitsCount);

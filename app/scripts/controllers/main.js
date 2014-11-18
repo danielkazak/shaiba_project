@@ -30,22 +30,37 @@ angular.module('shaibaApp')
                     var newDish = data[0];
                     var newNation = data[1];
                     var newAdj = data[2];
-                    var suffix = '';
+                    var suffix;
+                    var adj = newAdj.name;
                     if (newNation.name[newNation.name.length-1] === 'י') {
-                        if (newDish.isPlural) {
-                            if (newDish.isMale) {
+                        if (newDish.isMale) {
+                            if (newDish.isPlural) {
                                 suffix = 'ם';
+                            } else {
+                                suffix = '';
                             }
-                            else {
-                                suffix = 'ות';
-                            }
-                        } else if (!newDish.isMale) {
+                        } else if (newDish.isPlural) {
+                            suffix = 'ות';
+                        } else {
                             suffix = 'ת';
+                        }
+                    }
+                    if (!newAdj.isSame) {
+                        if (newDish.isMale) {
+                            if (newDish.isPlural) {
+                                adj = newAdj.versions[SharedData.hebrewOptionsEnum.PLURAL_MALE];
+                            } else {
+                                adj = newAdj.versions[SharedData.hebrewOptionsEnum.SINGLE_MALE];
+                            }
+                        } else if (newDish.isPlural) {
+                            adj = newAdj.versions[SharedData.hebrewOptionsEnum.PLURAL_FEMALE];
+                        } else {
+                            adj = newAdj.versions[SharedData.hebrewOptionsEnum.SINGLE_FEMALE];
                         }
                     }
                     $scope.dish = newDish.name;
                     $scope.nation = newNation.name + suffix;
-                    $scope.adj = newAdj.name;
+                    $scope.adj = adj;
                     console.log(data);
                 }, function(result) {
                     console.log('Failed to get one of them: ' + result);

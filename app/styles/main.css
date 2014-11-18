@@ -182,7 +182,7 @@ body {
     color: #FFC929;
 }
 
-input[type="text"]{
+.aboutinput{
     text-align: right;
     direction: RTL;
 
@@ -208,7 +208,7 @@ input[type="text"]{
     -o-transition: border 0.15s linear 0s, box-shadow 0.15s linear 0s, color 0.15s linear 0s;
 }
 
-input[type="text"]:focus {
+.aboutinput:focus {
     color: #333;
     border-color: rgba(41, 92, 161, 0.4);
 

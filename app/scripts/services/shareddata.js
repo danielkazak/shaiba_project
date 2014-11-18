@@ -34,6 +34,11 @@ angular.module('shaibaApp')
         suffixOptions: {SINGLE_MALE: '',
                         PLURAL_MALE: 'ם',
                         SINGLE_FEMALE: 'ת',
-                        PLURAL_FEMALE: 'ות'}
+                        PLURAL_FEMALE: 'ות'},
+
+        hebrewOptionsEnum: {SINGLE_MALE: 0,
+                            PLURAL_MALE: 1,
+                            SINGLE_FEMALE: 2,
+                            PLURAL_FEMALE: 3}
     };
   });
