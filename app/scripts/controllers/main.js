@@ -11,8 +11,6 @@ angular.module('shaibaApp')
   .controller('MainCtrl', function ($scope, parse, $q, $timeout, Facebook, AppAlert, Title, $rootScope, SharedData) {
         Title.setTitle('מחולל שייבה');
 
-        /*AppAlert.add('info', 'לחצו על ראשו של שייבה', 5000);*/
-
         // $scope objects
         $scope.nation = '';
         $scope.dish = '';
@@ -30,7 +28,7 @@ angular.module('shaibaApp')
                     var newDish = data[0];
                     var newNation = data[1];
                     var newAdj = data[2];
-                    var suffix;
+                    var suffix = '';
                     var adj = newAdj.name;
                     if (newNation.name[newNation.name.length-1] === 'י') {
                         if (newDish.isMale) {
