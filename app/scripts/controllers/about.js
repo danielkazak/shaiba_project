@@ -208,4 +208,24 @@ angular.module('shaibaApp')
         $scope.cancel = function() {
             $modalInstance.dismiss('cancel');
         };
+
+        $scope.textChanged = function(index) {
+            $scope.displayAdjectives[index].approved = true;
+        };
+
+        $scope.allAdjClicked = function() {
+            var newValue = !$scope.allAdjMet();
+            _.each($scope.displayAdjectives, function (adj) {
+                adj.approved = newValue;
+            });
+        };
+
+        $scope.allAdjMet = function() {
+            var needsMet = _.reduce($scope.displayAdjectives, function (memo, adj) {
+                return memo + (adj.approved ? 1 : 0);
+            }, 0);
+
+            return (needsMet === $scope.displayAdjectives.length);
+        };
+
     });
