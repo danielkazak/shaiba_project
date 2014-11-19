@@ -337,6 +337,10 @@ body {
     display: none;
 }
 
+.no-top-border {
+    border-top: none;
+}
+
 .daniel {
     display: none;
 }
