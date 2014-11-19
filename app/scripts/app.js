@@ -86,7 +86,7 @@ angular
             var nextPath = $location.path(),
                 nextRoute = $route.routes[nextPath];
             $log.info(nextRoute);
-            if (!$rootScope.isAdmin && $rootScope.adminHitsCount > 2) {
+            if (!$rootScope.isAdmin && $rootScope.adminHitsCount > 2 && nextRoute && nextRoute.auth) {
                 $modal.open({
                     templateUrl: 'views/Partials/idareyouModal.html'
                 });
