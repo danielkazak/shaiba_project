@@ -44,7 +44,7 @@ angular
             controller: 'InfoCtrl'
         })
         .when('/mobileapp', {
-            templateUrl: 'views/partials/appCodeModal.html',
+            templateUrl: 'views/Partials/appCodeModal.html',
             controller: 'MobileCtrl'
         })
       .otherwise({
