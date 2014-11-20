@@ -88,6 +88,7 @@ angular.module('shaibaApp')
                                     grade: 2,
                                     usersNumber: 1,
                                     user: Facebook.userDetails.userId,
+                                    userName: Facebook.userDetails.userName,
                                     usersVoted: {'__op': 'AddUnique', 'objects': [Facebook.userDetails.userId]}
                                 }).then(function() {
                                         $rootScope.favStarCss = 'glyphicon glyphicon-star favstar-disabled pull-left';
