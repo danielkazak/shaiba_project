@@ -85,7 +85,7 @@ angular.module('shaibaApp')
                                     name: $scope.dish +
                                         ' ' + $scope.nation +
                                         ' ' + $scope.adj,
-                                    grade: 4,
+                                    grade: 2,
                                     usersNumber: 1,
                                     user: Facebook.userDetails.userId,
                                     usersVoted: {'__op': 'AddUnique', 'objects': [Facebook.userDetails.userId]}

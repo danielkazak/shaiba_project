@@ -11,7 +11,7 @@ angular.module('shaibaApp')
   .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title, AppAlert, SharedData, $timeout) {
         Title.setTitle(SharedData.siteTitles.HALL);
         $scope.bestSentences = {};
-        $scope.max = 10;
+        $scope.max = 5;
 
         // Validating user rating options (whether voted already or not)
         function validateRatingFunctionality(){
@@ -61,6 +61,9 @@ angular.module('shaibaApp')
             sentence.isReadOnly = true;
             sentence.usersVoted.push(Facebook.getUserId());
             $scope.bestSentences.sort(compare);
+            if(sentence.usersNumber === 5) {
+                sentence.grade = (sentence.grade * sentence.usersNumber + sentence.grade - 2) / sentence.usersNumber;
+            }
 
             var data = {
                 grade: sentence.grade,
@@ -99,4 +102,9 @@ angular.module('shaibaApp')
                 validateRatingFunctionality();
             });
 
+        $scope.$on("$destroy", function(){
+            for(var i = 0; i < $scope.bestSentences.length; i++) {
+                $scope.bestSentences[i].color = '';
+            }
+        });
   });
