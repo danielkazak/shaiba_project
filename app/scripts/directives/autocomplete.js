@@ -7,7 +7,7 @@
  * # autocomplete
  */
 angular.module('shaibaApp')
-  .directive('autocomplete', function ($timeout) {
+  .directive('autocomplete', ['$timeout', function ($timeout) {
         return function(scope, iElement, iAttrs) {
             iElement.autocomplete({
                 source: scope[iAttrs.uiItems],
@@ -18,4 +18,4 @@ angular.module('shaibaApp')
                 }
             });
         };
-  });
+  }]);

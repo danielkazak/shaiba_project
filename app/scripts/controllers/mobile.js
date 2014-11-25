@@ -8,6 +8,6 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('MobileCtrl', function ($scope) {
+  .controller('MobileCtrl', ['scope', function ($scope) {
 
-  });
+  }]);

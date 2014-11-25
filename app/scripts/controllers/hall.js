@@ -8,7 +8,8 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('HallCtrl', function ($scope, parse, Facebook, $rootScope, Title, AppAlert, SharedData, $timeout) {
+  .controller('HallCtrl', ['$scope', 'parse', 'Facebook', '$rootScope', 'Title', 'AppAlert', 'SharedData', '$timeout',
+        function ($scope, parse, Facebook, $rootScope, Title, AppAlert, SharedData, $timeout) {
         Title.setTitle(SharedData.siteTitles.HALL);
         $scope.bestSentences = {};
         $scope.max = 5;
@@ -107,4 +108,4 @@ angular.module('shaibaApp')
                 $scope.bestSentences[i].color = '';
             }
         });
-  });
+  }]);

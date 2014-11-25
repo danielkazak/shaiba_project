@@ -8,7 +8,7 @@
  * Factory in the shaibaApp.
  */
 angular.module('shaibaApp')
-  .factory('AppAlert', ['$rootScope','$timeout', function ($rootScope, $timeout) {
+  .factory('AppAlert', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
         $rootScope.alerts = [];
 
         var alertService = {

@@ -8,7 +8,8 @@
  * Factory in the shaibaApp.
  */
 angular.module('shaibaApp')
-  .factory('Facebook', function ($facebook, $q, $rootScope, ngProgress, parse, SharedData, AppAlert) {
+  .factory('Facebook', ['$facebook', '$q', '$rootScope', 'ngProgress', 'parse', 'SharedData', 'AppAlert',
+        function ($facebook, $q, $rootScope, ngProgress, parse, SharedData, AppAlert) {
     // Service logic
     // ...
         $rootScope.isLoggedIn = false;
@@ -103,4 +104,4 @@ angular.module('shaibaApp')
 
     };
         return facebookService;
-  });
+  }]);

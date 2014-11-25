@@ -8,7 +8,7 @@
  * Factory in the shaibaApp.
  */
 angular.module('shaibaApp')
-  .factory('Title', function (SharedData) {
+  .factory('Title', ['SharedData', function (SharedData) {
     // Service logic
     // ...
 
@@ -23,4 +23,4 @@ angular.module('shaibaApp')
         title = newTitle;
       }
     };
-  });
+  }]);

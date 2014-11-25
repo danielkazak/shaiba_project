@@ -8,7 +8,8 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('MainCtrl', function ($scope, parse, $q, $timeout, Facebook, AppAlert, Title, $rootScope, SharedData) {
+  .controller('MainCtrl', ['$scope', 'parse', '$q', '$timeout', 'Facebook', 'AppAlert', 'Title', '$rootScope', 'SharedData',
+        function ($scope, parse, $q, $timeout, Facebook, AppAlert, Title, $rootScope, SharedData) {
         Title.setTitle('מחולל שייבה');
 
         // $scope objects
@@ -107,4 +108,4 @@ angular.module('shaibaApp')
                 AppAlert.add(SharedData.appAlertTypes.WARNING, 'שייבה לא אמר כלום יא פלופ! טיפ: לחץ על הראש.', 4000);
             }
         };
-    });
+    }]);

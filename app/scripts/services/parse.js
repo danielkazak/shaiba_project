@@ -8,7 +8,7 @@
  * Factory in the shaibaApp.
  */
 angular.module('shaibaApp')
-  .factory('parse', function ($http, $q, ngProgress, SharedData) {
+  .factory('parse', ['$http', '$q', 'ngProgress', 'SharedData', function ($http, $q, ngProgress, SharedData) {
         // Service logic
         // ...
         // Initialize headers for Shaiba_Generator at parse.com
@@ -180,7 +180,7 @@ angular.module('shaibaApp')
 
         }
         return new Parse();
-  });
+  }]);
 
 
 

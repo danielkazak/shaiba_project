@@ -8,7 +8,8 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('AboutCtrl', function ($scope, parse, AppAlert, Title, SharedData, $q, $modal) {
+  .controller('AboutCtrl', ['$scope', 'parse', 'AppAlert', 'Title', 'SharedData', '$q', '$modal',
+        function ($scope, parse, AppAlert, Title, SharedData, $q, $modal) {
         Title.setTitle(SharedData.siteTitles.SETTINGS);
         // Send attributes to class attribute for directive (so onkeyup can send attribute directly)
         $scope.dishes = 'dishes';
@@ -152,7 +153,8 @@ angular.module('shaibaApp')
                 });
         };
 
-  }).controller('AddDishModalCtrl', function($scope, $modalInstance, dishName, parse, SharedData) {
+  }]).controller('AddDishModalCtrl', ['$scope', '$modalInstance', 'dishName', 'parse', 'SharedData',
+    function($scope, $modalInstance, dishName, parse, SharedData) {
         $scope.displayDish = dishName;
         $scope.displayNation = 'ישראלי';
         parse.getRandom('nations')
@@ -175,7 +177,8 @@ angular.module('shaibaApp')
         $scope.cancel = function() {
             $modalInstance.dismiss('cancel');
         };
-    }).controller('AddAdjectiveModalCtrl', function($scope, $modalInstance, adjName, parse, SharedData, AppAlert) {
+    }]).controller('AddAdjectiveModalCtrl', ['$scope', '$modalInstance', 'adjName', 'parse', 'SharedData', 'AppAlert',
+        function($scope, $modalInstance, adjName, parse, SharedData, AppAlert) {
         parse.getRandomDishes()
             .then(function(data) {
                 $scope.displayAdjectives = [
@@ -228,4 +231,4 @@ angular.module('shaibaApp')
             return (needsMet === $scope.displayAdjectives.length);
         };
 
-    });
+    }]);

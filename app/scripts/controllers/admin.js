@@ -8,7 +8,8 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('AdminCtrl', function ($scope, parse, SharedData, Facebook, Title, AppAlert) {
+  .controller('AdminCtrl', ['$scope', 'parse', 'SharedData', 'Facebook', 'Title', 'AppAlert',
+        function ($scope, parse, SharedData, Facebook, Title, AppAlert) {
         Title.setTitle('מסך אדמינים');
         $scope.selectedTable = 'adj'; // Defines the selected table
         $scope.tableContent = [];
@@ -79,4 +80,4 @@ angular.module('shaibaApp')
             $scope.selectedIndex = $index;
         };
         
-  });
+  }]);

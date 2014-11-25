@@ -8,7 +8,8 @@
  * Controller of the shaibaApp
  */
 angular.module('shaibaApp')
-  .controller('IndexCtrl', function ($scope, Facebook, Title, AppAlert, parse, $rootScope, $modal) {
+  .controller('IndexCtrl', ['$scope', 'Facebook', 'Title', 'AppAlert', 'parse', '$rootScope',
+        function ($scope, Facebook, Title, AppAlert, parse, $rootScope) {
         $scope.Title = Title;
         $rootScope.admins = [];
 
@@ -63,4 +64,4 @@ angular.module('shaibaApp')
         };
 
 
-    });
+    }]);
