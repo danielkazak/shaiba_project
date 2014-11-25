@@ -2,14 +2,14 @@
     <div class="modal-header">
         <h1 class="modal-title">עברית שפה קשה</h1>
         <h3>עזור לשייבה בבעיות השפה שלו</h3>
-    </div>
-    <div class="modal-body">
         <h4>תקן את המשפטים הלא נכונים, ובסוף סמן את כל המשפטים שאתה מאשר</h4>
-            <input type="checkbox" ng-click="allAdjClicked()" ng-checked="allAdjMet()"><label>וואלה הכל הולך נשמה</label>
+    </div>
+    <div class="modal-body adjmodal-wrapper">
+        <input type="checkbox" ng-click="allAdjClicked()" ng-checked="allAdjMet()"><label style="margin-right: 5px; color: #777; font-size: 1.55em;">וואלה הכל הולך נשמה</label>
         <ul ng-repeat="adjective in displayAdjectives" class="shaiba-input" style="height: 50px;">
             <span>
                 <input type="checkbox" class="" ng-model="adjective.approved"><label style="padding-right: 4px; margin-bottom: 41px;">{{adjective.dish}}</label>
-                <input type="text" class="input-noborders" style="margin-right: 30px;" ng-model="adjective.name" ng-change="textChanged($index)"/>
+                <div class="pull-left"><input type="text" class="input-noborders" style="margin-right: 30px;" ng-model="adjective.name" ng-change="textChanged($index)"/></div>
             </span>
         </ul>
     </div>
