@@ -33,7 +33,7 @@ For now, only us the developers can sign in facebook through the site, so unfort
 blocked for most of you. But that's gonna be solved soon enough.
 
 What you can do for now is:
-* You can get funny generated sentences in the home page, by clicking on shaiba's head.
+* You can get funny generated sentences in the home page, by clicking on Shaiba's head.
 * You can explore the hall of fame, to see what other users voted to.
 * You can contact through the info.
 * You can get the mobile app (if you own and android phone), to get funny sentences much more easily!
@@ -41,4 +41,4 @@ What you can do for now is:
 What you could do when you'd be able to log in facebook:
 * Insert a beloved sentence to the hall of fame.
 * Rate sentences in the hall of fame, that you haven't rated yet.
-* Suggest Shaiba more dishes, nations and adjectives, and help him realize how to use it in a sentence.
+* Suggest Shaiba more dishes, nations and adjectives, and help him realize how to use them in a sentence.
