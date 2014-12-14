@@ -20,7 +20,7 @@ angular
     'ngFacebook',
     'ngProgress'
   ])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -50,11 +50,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  })
-    .config( function( $facebookProvider ) {
+  }])
+    .config(['$facebookProvider', function($facebookProvider) {
         $facebookProvider.setAppId(1508138392784272);
-    })
-    .run( function($location, $rootScope, $route) {
+    }])
+    .run(['$location', '$rootScope', '$route', function($location, $rootScope, $route) {
         $rootScope.adminHitsCount = 0;
 
         // Cut and paste the "Load the SDK" code from the facebook javascript sdk page.
@@ -79,8 +79,9 @@ angular
 
 
         }());
-    })
-    .run(function($route, $location, $rootScope, $log, $modal){
+    }])
+    .run(['$route', '$location', '$rootScope', '$log', '$modal',
+        function($route, $location, $rootScope, $log, $modal){
 
         $rootScope.$on('$locationChangeStart', function(ev, next, current) {
             var nextPath = $location.path(),
@@ -96,6 +97,4 @@ angular
                 $rootScope.adminHitsCount++;
             }
         });
-    });
-
-;
+    }]);
