@@ -21,12 +21,11 @@ App Setup:
 * The website should be opened in your default browser, in port 9000. enjoy!
 * From now on, you only need to go to shaiba_project and run 'grunt serve'.
 
-(If you don't have any of the above the installations are:
-    - npm - Go to http://nodejs.org and click install.
-    - git - Go to http://git-scm.com/downloads and go to the right link according to your OS.
-    - bower - Run in your cmd 'npm install -g bower'.
-    - grunt - Run in your cmd 'npm install -g grunt-cli' (although 'npm install' should automatically do it for you).
-)
+If you don't have any of the above, the installations are:
+* npm - Go to http://nodejs.org and click install.
+* git - Go to http://git-scm.com/downloads and go to the right link according to your OS.
+* bower - Run in your cmd 'npm install -g bower'.
+* grunt - Run in your cmd 'npm install -g grunt-cli' (although 'npm install' should automatically do it for you).
 
 How to Use the Website:
 =======================
